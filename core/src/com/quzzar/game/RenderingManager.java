@@ -1,4 +1,4 @@
-package com.quzzar.gametest;
+package com.quzzar.game;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 

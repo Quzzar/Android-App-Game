@@ -1,6 +1,7 @@
-package com.quzzar.gametest;
+package com.quzzar.game;
 
 import com.badlogic.gdx.InputProcessor;
+import com.quzzar.game.Screens.GameScreen;
 
 public class InputHandler implements InputProcessor {
 
@@ -23,7 +24,7 @@ public class InputHandler implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
-        GameMain.player.movePlayer(5, 5);
+        GameScreen.player.movePlayer(screenX, screenY);
 
         return true;
     }

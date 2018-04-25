@@ -3,7 +3,7 @@ package com.quzzar.gametest.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.quzzar.gametest.GameMain;
+import com.quzzar.game.GameMain;
 
 public class HtmlLauncher extends GwtApplication {
 

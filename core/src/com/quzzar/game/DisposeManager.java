@@ -1,4 +1,4 @@
-package com.quzzar.gametest;
+package com.quzzar.game;
 
 public class DisposeManager {
 

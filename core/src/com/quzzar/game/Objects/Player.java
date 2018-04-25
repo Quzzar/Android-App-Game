@@ -1,8 +1,8 @@
-package com.quzzar.gametest.objects;
+package com.quzzar.game.Objects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.quzzar.gametest.RenderingManager;
+import com.quzzar.game.RenderingManager;
 
 public class Player {
 
@@ -17,7 +17,9 @@ public class Player {
     }
 
     public void movePlayer(float newX, float newY){
-        sprite.translate(newX, newY);
+
+        sprite.setPosition(newX, newY);
+
     }
 
     public void createPlayer(){

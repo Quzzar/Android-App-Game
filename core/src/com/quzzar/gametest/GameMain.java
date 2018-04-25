@@ -26,7 +26,6 @@ public class GameMain extends ApplicationAdapter {
 		// Register this class as an input processor
 		Gdx.input.setInputProcessor(new InputHandler());
 
-		// Removed?
 	}
 
 	@Override

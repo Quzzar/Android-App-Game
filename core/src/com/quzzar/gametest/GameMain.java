@@ -3,59 +3,49 @@ package com.quzzar.gametest;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.quzzar.gametest.objects.Player;
 
 public class GameMain extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	Texture imgClick;
 
-	boolean drawImage = false;
+	private SpriteBatch batch;
+
+    public static Player player;
 
 	@Override
 	public void create () {
 
 		batch = new SpriteBatch();
-		img = new Texture("good_guy.png");
 
-		imgClick = new Texture("Tolsimir.jpg");
+		// Set player starting point to center of screen
+        player = new Player(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2 );
 
-		Image image = new Image(img);
+        player.createPlayer();
 
-		image.addListener( new ClickListener(){
-			public void clicked(InputEvent event, float x, float y){
-				drawImage = true;
-			}
-		});
-
+		// Register this class as an input processor
+		Gdx.input.setInputProcessor(new InputHandler());
 	}
 
 	@Override
 	public void render () {
+
+		if(Gdx.input.isTouched())
+
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		//batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		for(Sprite sprite : RenderingManager.getSpritesRendered()){
+            batch.draw(sprite, sprite.getX(), sprite.getY());
+        }
 		batch.end();
-
-
-		if (drawImage) {
-			batch.begin();
-			batch.draw( imgClick, 0, 0, Gdx.graphics.getWidth(),
-					Gdx.graphics.getHeight() );
-			batch.end();
-			drawImage = false;
-		}
 
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
+        RenderingManager.clearRender();
 	}
+
 }

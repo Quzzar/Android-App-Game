@@ -14,6 +14,7 @@ public class GameMain extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("good_guy.png");
+		// Edited me plz daddy
 	}
 
 	@Override

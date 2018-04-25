@@ -23,8 +23,6 @@ public class GameMain extends ApplicationAdapter {
 
         player.createPlayer();
 
-        //Extra comment added ///
-
 		// Register this class as an input processor
 		Gdx.input.setInputProcessor(new InputHandler());
 	}

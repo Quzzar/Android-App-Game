@@ -5,20 +5,24 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.quzzar.game.GameMain;
+import com.quzzar.game.Objects.Player;
 import com.quzzar.game.RenderingManager;
 import com.quzzar.game.InputHandler;
-import com.quzzar.game.Objects.Player;
 
 public class GameScreen implements Screen {
 
+    private final GameMain game;
 
-    private SpriteBatch batch;
     public static Player player;
 
+    private SpriteBatch batch;
 
-    public GameScreen(){
+    public GameScreen(final GameMain game){
 
-        batch = new SpriteBatch();
+        this.game = game;
+
+        this.batch = new SpriteBatch();
 
         // Set player starting point to center of screen
         player = new Player(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2 );

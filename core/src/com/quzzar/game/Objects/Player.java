@@ -3,6 +3,7 @@ package com.quzzar.game.Objects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.quzzar.game.RenderingManager;
+import com.quzzar.game.Utility;
 
 public class Player {
 

@@ -15,6 +15,7 @@ public class GameMain extends ApplicationAdapter {
 		println("fuck my ass baby");
 		batch = new SpriteBatch();
 		img = new Texture("good_guy.png");
+		// Hime
 	}
 
 	@Override

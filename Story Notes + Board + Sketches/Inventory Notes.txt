@@ -1,0 +1,4 @@
+- Tap on items to equip
+- Tap inventory slot to see which items can be equipped
+- Character with equipped items is displayed
+- Different character is drawn for each type of mainhand weapon equipped(i.e. equipped polearms have different player stance than greatswords)

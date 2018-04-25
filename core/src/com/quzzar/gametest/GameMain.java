@@ -12,9 +12,9 @@ public class GameMain extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		println("fuck my ass baby");
 		batch = new SpriteBatch();
 		img = new Texture("good_guy.png");
-		// Edited me plz daddy
 	}
 
 	@Override

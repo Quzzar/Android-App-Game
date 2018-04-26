@@ -30,6 +30,8 @@ public class InventoryScreen implements Screen {
 
         healthPot.getDamageBoost();
 
+        // added
+
 
     }
 

@@ -12,6 +12,10 @@ public class Item {
 
     }
 
+    public ItemGroup getItemGroup() {
+        return itemType.getItemGroup();
+    }
+
     public ItemType getItemType() {
         return itemType;
     }
@@ -19,4 +23,9 @@ public class Item {
     public int getAmount() {
         return amount;
     }
+
+    public String getImagePath(){
+        return itemType.getImagePath();
+    }
+
 }

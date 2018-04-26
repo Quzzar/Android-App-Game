@@ -3,6 +3,9 @@ package com.quzzar.game.Screens;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
+import com.quzzar.game.Inventory.Item;
+import com.quzzar.game.Inventory.Items.Axe;
+import com.quzzar.game.Inventory.Items.HealthPotion;
 
 public class InventoryScreen implements Screen {
 
@@ -22,6 +25,11 @@ public class InventoryScreen implements Screen {
 
     @Override
     public void show() {
+
+        HealthPotion healthPot = new HealthPotion(1, 0, 0, 0, 0, 5);
+
+        healthPot.getDamageBoost();
+
 
     }
 

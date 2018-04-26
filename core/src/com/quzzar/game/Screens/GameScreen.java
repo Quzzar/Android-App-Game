@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
-import com.quzzar.game.Objects.Player;
 import com.quzzar.game.RenderingManager;
 import com.quzzar.game.InputHandler;
 
@@ -14,7 +13,7 @@ public class GameScreen implements Screen {
 
     private final GameMain game;
 
-    public static Player player;
+    //public static Player player;
 
     private SpriteBatch batch;
 
@@ -25,9 +24,9 @@ public class GameScreen implements Screen {
         this.batch = new SpriteBatch();
 
         // Set player starting point to center of screen
-        player = new Player(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2 );
+        //player = new Player(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2 );
 
-        player.createPlayer();
+        //player.createPlayer();
 
         // Register this class as an input processor
         Gdx.input.setInputProcessor(new InputHandler());

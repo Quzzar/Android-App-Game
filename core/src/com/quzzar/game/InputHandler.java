@@ -25,7 +25,7 @@ public class InputHandler implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
-        GameScreen.player.movePlayer(getTouchedLocation().getX(), getTouchedLocation().getY());
+        //GameScreen.player.movePlayer(getTouchedLocation().getX(), getTouchedLocation().getY());
 
         Utility.print("DEBUG-COORD", "<"+screenX+","+screenY+"> and <"
                 +getTouchedLocation().getX()+","+getTouchedLocation().getY()+">");

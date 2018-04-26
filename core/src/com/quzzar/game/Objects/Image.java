@@ -34,11 +34,8 @@ public class Image {
     }
 
     public boolean containsLocation(Location pressedLoc){
-        if ( pressedLoc.getX() < (location.getX()+width/2) && pressedLoc.getX() > (location.getX()-width/2)
-                && pressedLoc.getY() < (location.getY()+height/2) && pressedLoc.getY() > (location.getY()-height/2) ) {
-            return true;
-        }
-        return false;
+        return ( pressedLoc.getX() < (location.getX()+width/2) && pressedLoc.getX() > (location.getX()-width/2)
+                && pressedLoc.getY() < (location.getY()+height/2) && pressedLoc.getY() > (location.getY()-height/2) );
     }
 
     public void draw(SpriteBatch batch){

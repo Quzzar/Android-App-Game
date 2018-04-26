@@ -1,39 +1,15 @@
 package com.quzzar.game.Objects;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.quzzar.game.RenderingManager;
-import com.quzzar.game.Utility;
-
 public class Player {
 
-    private float x;
-    private float y;
-    private Sprite sprite;
+    private int damage;
+    private int speed;
+    private int defense;
 
-    public Player(float x, float y){
-        this.x = x;
-        this.y = y;
-        this.sprite = new Sprite(new Texture("good_guy.png"));
-    }
 
-    public void movePlayer(float newX, float newY){
 
-        sprite.setPosition(newX, newY);
+    public Player() {
+
 
     }
-
-    public void createPlayer(){
-
-        sprite.setPosition(x, y);
-        RenderingManager.addSprite(sprite);
-
-    }
-
-    public void deletePlayer(){
-
-        RenderingManager.removeSprite(sprite);
-
-    }
-
 }

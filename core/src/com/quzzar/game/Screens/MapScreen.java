@@ -101,5 +101,3 @@ public class MapScreen implements Screen {
         Gdx.input.setInputProcessor(null);
     }
 }
-
-

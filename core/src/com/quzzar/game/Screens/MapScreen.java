@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
-import com.quzzar.game.InputHandler;
+import com.quzzar.game.Input;
 import com.quzzar.game.Objects.*;
 
 public class MapScreen implements Screen {
@@ -29,12 +29,12 @@ public class MapScreen implements Screen {
         final MapScreen mapScreen = this;
 
         mapImg = new Image(new Texture("mapImg.jpg"),
-                new Location(GameMain.getScreenWidth()/2, (GameMain.getScreenHeight()/2)),
-                800,600);
+                new Location(0.5, 0.5),
+                0.2,0.4);
 
         arrowBtn = new Button(new Texture("mapArrow.jpg"), new Texture("mapArrow.jpg"),
-                new Location(GameMain.getScreenWidth()/2, (GameMain.getScreenHeight()/3)),
-                300, 100);
+                new Location(0.5, 0.3),
+                0.1, 0.3);
 
         Gdx.input.setInputProcessor(new InputAdapter() {
 
@@ -43,7 +43,7 @@ public class MapScreen implements Screen {
 
                 //Change map area button
                 //Currently has same function as play button
-                if (arrowBtn.containsLocation(InputHandler.getTouchedLocation())){
+                if (arrowBtn.containsLocation(Input.getTouchedLocation())){
                     mapScreen.dispose();
                 }
 
@@ -65,7 +65,7 @@ public class MapScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
 
-        if(arrowBtn.containsLocation(InputHandler.getTouchedLocation())){
+        if(arrowBtn.containsLocation(Input.getTouchedLocation())){
             arrowBtn.drawPressed(batch);
         } else {
             arrowBtn.drawIdle(batch);

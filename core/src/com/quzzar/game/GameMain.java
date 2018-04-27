@@ -2,6 +2,8 @@ package com.quzzar.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.quzzar.game.Objects.Location;
+import com.quzzar.game.Screens.InventoryScreen;
 import com.quzzar.game.Screens.MenuScreen;
 
 public class GameMain extends Game {
@@ -16,12 +18,5 @@ public class GameMain extends Game {
 		super.render();
 	}
 
-	public static int getScreenWidth(){
-		return Gdx.graphics.getWidth();
-	}
-
-	public static int getScreenHeight(){
-		return Gdx.graphics.getHeight();
-	}
 
 }

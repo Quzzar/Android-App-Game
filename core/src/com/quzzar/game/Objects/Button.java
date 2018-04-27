@@ -8,9 +8,9 @@ public class Button{
     private Image idleImage;
     private Image pressedImage;
 
-    public Button(Texture idle, Texture pressed, Location location, int width, int height){
-        this.idleImage = new Image(idle,location,width,height);
-        this.pressedImage = new Image(pressed,location,width,height);
+    public Button(Texture idle, Texture pressed, Location location, double widthScale, double heightScale){
+        this.idleImage = new Image(idle,location,widthScale,heightScale);
+        this.pressedImage = new Image(pressed,location,widthScale,heightScale);
     }
 
     public Image getIdleImage(){
@@ -29,11 +29,11 @@ public class Button{
         return idleImage.getLocation();
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return idleImage.getWidth();
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return idleImage.getHeight();
     }
 

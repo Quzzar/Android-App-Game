@@ -1,21 +1,24 @@
 package com.quzzar.game.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
-import com.quzzar.game.RenderingManager;
-import com.quzzar.game.InputHandler;
+import com.quzzar.game.Input;
+import com.quzzar.game.Objects.Button;
+import com.quzzar.game.Objects.Location;
 
 public class GameScreen implements Screen {
 
     private final GameMain game;
 
-    //public static Player player;
-
     private SpriteBatch batch;
+
+    private Button symbolBtn;
+
 
     public GameScreen(final GameMain game){
 
@@ -23,13 +26,26 @@ public class GameScreen implements Screen {
 
         this.batch = new SpriteBatch();
 
-        // Set player starting point to center of screen
-        //player = new Player(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2 );
+        final GameScreen gameScreen = this;
 
-        //player.createPlayer();
+
+        symbolBtn = new Button(new Texture("symbol.png"),new Texture("badlogic.jpg"),
+                new Location(0.1,0.1),0.1,0.1);
 
         // Register this class as an input processor
-        Gdx.input.setInputProcessor(new InputHandler());
+        Gdx.input.setInputProcessor(new InputAdapter() {
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+
+                //Play game button
+                if (symbolBtn.containsLocation(Input.getTouchedLocation())){
+                    gameScreen.dispose();
+                    game.setScreen(new InventoryScreen(game));
+                }
+
+                return super.touchUp(screenX, screenY, pointer, button);
+            }
+        });
 
     }
 
@@ -38,10 +54,15 @@ public class GameScreen implements Screen {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         batch.begin();
-        for(Sprite sprite : RenderingManager.getSpritesRendered()){
-            batch.draw(sprite, sprite.getX(), sprite.getY());
+
+        if(symbolBtn.containsLocation(Input.getTouchedLocation())){
+            symbolBtn.drawPressed(batch);
+        } else {
+            symbolBtn.drawIdle(batch);
         }
+
         batch.end();
 
     }
@@ -74,6 +95,5 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
-        RenderingManager.clearRender();
     }
 }

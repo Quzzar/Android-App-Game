@@ -2,19 +2,19 @@ package com.quzzar.game.Objects;
 
 public class Location {
 
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
-    public Location(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Location(double xScale, double yScale) {
+        this.x = xScale;
+        this.y = yScale;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 }

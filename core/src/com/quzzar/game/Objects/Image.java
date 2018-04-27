@@ -1,20 +1,23 @@
 package com.quzzar.game.Objects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.quzzar.game.GameMain;
+import com.quzzar.game.Utility;
 
 public class Image {
 
     private Texture texture;
     private Location location;
-    private int width;
-    private int height;
+    private double width;
+    private double height;
 
-    public Image(Texture texture, Location location, int width, int height) {
+    public Image(Texture texture, Location location, double widthScale, double heightScale) {
         this.texture = texture;
         this.location = location;
-        this.width = width;
-        this.height = height;
+        this.width = widthScale;
+        this.height = heightScale;
     }
 
     public Texture getTexture() {
@@ -25,11 +28,11 @@ public class Image {
         return location;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
@@ -39,7 +42,8 @@ public class Image {
     }
 
     public void draw(SpriteBatch batch){
-        batch.draw(texture, location.getX()-width/2, location.getY()-height/2, width, height);
+        batch.draw(texture, (int) (Gdx.graphics.getWidth()*(location.getX()-width/2)), (int) (Gdx.graphics.getHeight()*(location.getY()-height/2)),
+                (int) (Gdx.graphics.getWidth()*width), (int) (Gdx.graphics.getHeight()*height));
     }
 
 }

@@ -7,8 +7,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
-import com.quzzar.game.InputHandler;
+import com.quzzar.game.Input;
 import com.quzzar.game.Objects.*;
+import com.quzzar.game.Utility;
 
 public class MenuScreen implements Screen{
 
@@ -29,42 +30,39 @@ public class MenuScreen implements Screen{
 
         final MenuScreen menuScreen = this;
 
-
         logoImg = new Image(new Texture("badlogic.jpg"),
-                new Location(GameMain.getScreenWidth()/2, (int) (GameMain.getScreenHeight()/1.2)),
-                300,200);
+                new Location(0.5, 0.8),
+                0.2,0.2);
 
 
         playBtn = new Button(new Texture("good_guy.png"), new Texture("badlogic.jpg"),
-                new Location(GameMain.getScreenWidth()/2, (int) (GameMain.getScreenHeight()/1.5)),
-                400, 200);
+                new Location(0.5, 0.65),
+                0.2, 0.2);
 
 
         exitBtn = new Button(new Texture("Tolsimir.jpg"), new Texture("badlogic.jpg"),
-                new Location(GameMain.getScreenWidth()/2, GameMain.getScreenHeight()/2),
-                400, 200);
+                new Location(0.5, 0.4),
+                0.2, 0.2);
 
 
         Gdx.input.setInputProcessor(new InputAdapter() {
-
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
                 //Play game button
-                if (playBtn.containsLocation(InputHandler.getTouchedLocation())){
+                if (playBtn.containsLocation(Input.getTouchedLocation())){
                     menuScreen.dispose();
                     game.setScreen(new GameScreen(game));
                 }
 
                 //Exit button
-                if (exitBtn.containsLocation(InputHandler.getTouchedLocation())) {
+                if (exitBtn.containsLocation(Input.getTouchedLocation())) {
                     menuScreen.dispose();
                     Gdx.app.exit();
                 }
 
                 return super.touchUp(screenX, screenY, pointer, button);
             }
-
         });
 
     }
@@ -81,13 +79,13 @@ public class MenuScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
 
-        if(exitBtn.containsLocation(InputHandler.getTouchedLocation())){
+        if(exitBtn.containsLocation(Input.getTouchedLocation())){
             exitBtn.drawPressed(batch);
         } else {
             exitBtn.drawIdle(batch);
         }
 
-        if(playBtn.containsLocation(InputHandler.getTouchedLocation())){
+        if(playBtn.containsLocation(Input.getTouchedLocation())){
             playBtn.drawPressed(batch);
         } else {
             playBtn.drawIdle(batch);

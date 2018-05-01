@@ -52,6 +52,9 @@ public class MenuScreen implements Screen{
                 //Play game button
                 if (playBtn.containsLocation(Input.getTouchedLocation())){
                     menuScreen.dispose();
+
+                    Player.create();
+
                     game.setScreen(new GameScreen(game));
                 }
 

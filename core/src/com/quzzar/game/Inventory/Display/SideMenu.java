@@ -1,4 +1,4 @@
-package com.quzzar.game.Inventory;
+package com.quzzar.game.Inventory.Display;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

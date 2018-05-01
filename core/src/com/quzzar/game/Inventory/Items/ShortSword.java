@@ -6,8 +6,8 @@ import com.quzzar.game.Inventory.Items.Groups.Weapon;
 
 public class ShortSword extends Weapon{
 
-    public ShortSword(ItemType itemType, int amount, int damageMod, int speedMod) {
-        super(itemType, amount, damageMod, speedMod);
+    public ShortSword(int amount, int damageMod, int speedMod) {
+        super(ItemType.SHORT_SWORD, amount, damageMod, speedMod);
     }
 
     @Override

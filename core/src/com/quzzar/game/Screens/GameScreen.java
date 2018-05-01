@@ -40,7 +40,7 @@ public class GameScreen implements Screen {
                 //Play game button
                 if (symbolBtn.containsLocation(Input.getTouchedLocation())){
                     gameScreen.dispose();
-                    game.setScreen(new InventoryScreen(game));
+                    game.setScreen(new EquipScreen(game));
                 }
 
                 return super.touchUp(screenX, screenY, pointer, button);
@@ -95,5 +95,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+        Gdx.input.setInputProcessor(null);
     }
 }

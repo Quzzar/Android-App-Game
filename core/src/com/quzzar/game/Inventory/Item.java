@@ -1,5 +1,7 @@
 package com.quzzar.game.Inventory;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class Item {
 
     private ItemType itemType;
@@ -24,8 +26,8 @@ public class Item {
         return amount;
     }
 
-    public String getImagePath(){
-        return itemType.getImagePath();
+    public Texture getTexture(){
+        return itemType.getTexture();
     }
 
 }

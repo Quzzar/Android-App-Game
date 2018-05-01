@@ -1,5 +1,7 @@
 package com.quzzar.game.Inventory;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public enum ItemType {
 
     SHORT_SWORD("badlogic.jpg",ItemGroup.WEAPON),
@@ -9,17 +11,17 @@ public enum ItemType {
     BOOK("badlogic.jpg",ItemGroup.QUEST);
 
 
-    private String imagePath;
+    private Texture texture;
     private ItemGroup itemGroup;
 
 
     ItemType(String imagePath, ItemGroup itemGroup){
-        this.imagePath = imagePath;
+        this.texture = new Texture(imagePath);
         this.itemGroup = itemGroup;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public Texture getTexture() {
+        return texture;
     }
 
     public ItemGroup getItemGroup() {

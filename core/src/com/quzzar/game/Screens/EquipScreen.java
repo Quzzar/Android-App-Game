@@ -1,27 +1,28 @@
 package com.quzzar.game.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
-import com.quzzar.game.Inventory.Display.SideMenu;
+import com.quzzar.game.Inventory.Display.InventoryDisplay;
 
-public class StatsScreen implements Screen {
+public class EquipScreen implements Screen {
 
     private final GameMain game;
 
     private SpriteBatch batch;
 
-    private SideMenu sideMenu;
+    private InventoryDisplay inventoryDisplay;
 
-    public StatsScreen(final GameMain game) {
+    public EquipScreen(final GameMain game) {
 
         this.game = game;
 
         this.batch = new SpriteBatch();
 
-        sideMenu = new SideMenu(new Texture("Tolsimir.jpg"));
-
+        this.inventoryDisplay = new InventoryDisplay();
 
     }
 
@@ -33,7 +34,13 @@ public class StatsScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        sideMenu.draw(batch);
+        Gdx.gl.glClearColor(0.15f, 0.15f, 0.3f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+
+        inventoryDisplay.draw(batch, Color.RED);
+
+        batch.end();
 
     }
 
@@ -61,5 +68,5 @@ public class StatsScreen implements Screen {
     public void dispose() {
 
     }
-}
 
+}

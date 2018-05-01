@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
-import com.quzzar.game.Inventory.SideMenu;
+import com.quzzar.game.Inventory.Display.SideMenu;
 
 public class InventoryScreen implements Screen {
 

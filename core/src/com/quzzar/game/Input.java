@@ -16,6 +16,7 @@ public class Input {
             Update: Location now is set to contain a scaled value (0.0-1.0),
                 the values have been adjusted to return scales.
         */
+
         return new Location(Gdx.input.getX()*1.0/Gdx.graphics.getWidth(),
                 (Gdx.graphics.getHeight() - Gdx.input.getY())*1.0/Gdx.graphics.getHeight());
     }

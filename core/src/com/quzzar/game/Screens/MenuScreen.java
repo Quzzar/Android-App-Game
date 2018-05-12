@@ -30,17 +30,17 @@ public class MenuScreen implements Screen{
 
         final MenuScreen menuScreen = this;
 
-        logoImg = new Image(new Texture("badlogic.jpg"),
+        logoImg = new Image(new Texture("/mainMenu/gamelogo.jpg"),
                 new Location(0.5, 0.8),
                 0.2,0.2);
 
 
-        playBtn = new Button(new Texture("good_guy.png"), new Texture("badlogic.jpg"),
+        playBtn = new Button(new Texture("/mainMenu/play.png"), new Texture("/mainMenu/play.png"),
                 new Location(0.5, 0.65),
                 0.2, 0.2);
 
 
-        exitBtn = new Button(new Texture("Tolsimir.jpg"), new Texture("badlogic.jpg"),
+        exitBtn = new Button(new Texture("/mainMenu/exit.png"), new Texture("/mainMenu/exit.png"),
                 new Location(0.5, 0.4),
                 0.2, 0.2);
 

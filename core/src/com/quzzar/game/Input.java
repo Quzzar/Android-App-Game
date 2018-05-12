@@ -1,9 +1,16 @@
 package com.quzzar.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.quzzar.game.Objects.Location;
 
 public class Input {
+
+    private static boolean isNone = false;
+
+    public static void setNone(boolean none){
+        isNone = none;
+    }
 
     public static Location getTouchedLocation(){
         /*
@@ -17,6 +24,9 @@ public class Input {
                 the values have been adjusted to return scales.
         */
 
+        if(isNone){
+            return new Location(-1,-1);
+        }
         return new Location(Gdx.input.getX()*1.0/Gdx.graphics.getWidth(),
                 (Gdx.graphics.getHeight() - Gdx.input.getY())*1.0/Gdx.graphics.getHeight());
     }

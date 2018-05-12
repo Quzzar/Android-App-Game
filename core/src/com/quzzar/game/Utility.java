@@ -1,6 +1,7 @@
 package com.quzzar.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.Inventory.Item;
 import com.quzzar.game.Objects.Image;
 import com.quzzar.game.Objects.Player;
@@ -18,6 +19,12 @@ public class Utility {
             }
         }
         return null;
+    }
+
+    public static void screenDispose(SpriteBatch batch){
+        Input.setNone(true);
+        batch.dispose();
+        Gdx.input.setInputProcessor(null);
     }
 
     public static int getScreenWidth(){

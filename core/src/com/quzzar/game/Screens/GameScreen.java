@@ -10,6 +10,7 @@ import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Location;
+import com.quzzar.game.Utility;
 
 public class GameScreen implements Screen {
 
@@ -37,6 +38,7 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(false);
 
                 //Play game button
                 if (symbolBtn.containsLocation(Input.getTouchedLocation())){
@@ -44,6 +46,11 @@ public class GameScreen implements Screen {
                     game.setScreen(new InventoryScreen(game));
                 }
 
+                return super.touchUp(screenX, screenY, pointer, button);
+            }
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(true);
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
@@ -91,7 +98,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        Gdx.input.setInputProcessor(null);
+        Utility.screenDispose(batch);
     }
 }

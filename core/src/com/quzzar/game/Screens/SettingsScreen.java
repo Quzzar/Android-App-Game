@@ -8,9 +8,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
-import com.quzzar.game.Inventory.Display.SideMenu;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Location;
+import com.quzzar.game.Utility;
 
 public class SettingsScreen implements Screen {
 
@@ -35,12 +35,18 @@ public class SettingsScreen implements Screen {
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(false);
 
                 if (backToMainBtn.containsLocation(Input.getTouchedLocation())){
                     settingsScreen.dispose();
                     game.setScreen(new MenuScreen(game));
                 }
 
+                return super.touchUp(screenX, screenY, pointer, button);
+            }
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(true);
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
@@ -92,8 +98,7 @@ public class SettingsScreen implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        Gdx.input.setInputProcessor(null);
+        Utility.screenDispose(batch);
     }
 }
 

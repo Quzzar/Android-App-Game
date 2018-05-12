@@ -11,8 +11,6 @@ import com.quzzar.game.Input;
 import com.quzzar.game.Objects.*;
 import com.quzzar.game.Utility;
 
-import java.io.File;
-
 public class MenuScreen implements Screen{
 
     private final GameMain game;
@@ -54,6 +52,7 @@ public class MenuScreen implements Screen{
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(false);
 
                 //Play game button
                 if (playBtn.containsLocation(Input.getTouchedLocation())){
@@ -76,6 +75,11 @@ public class MenuScreen implements Screen{
                     Gdx.app.exit();
                 }
 
+                return super.touchUp(screenX, screenY, pointer, button);
+            }
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(true);
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
@@ -140,7 +144,7 @@ public class MenuScreen implements Screen{
 
     @Override
     public void dispose() {
-        Gdx.input.setInputProcessor(null);
+        Utility.screenDispose(batch);
     }
 
 

@@ -9,9 +9,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
 import com.quzzar.game.Inventory.Display.SideMenu;
-import com.quzzar.game.Inventory.Inventory;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Location;
+import com.quzzar.game.Utility;
 
 public class InventoryScreen implements Screen {
 
@@ -39,7 +39,7 @@ public class InventoryScreen implements Screen {
 
         final InventoryScreen inventoryScreen = this;
 
-        this.sideMenu = new SideMenu(new Texture("game/map/mapImg.jpg"));
+        this.sideMenu = new SideMenu(new Texture("game/inventory/equip_panel.png"));
 
 
         mapBtn = new Button(new Texture("game/inventory/mapButton.png"),new Texture("game/inventory/mapButton.png"),
@@ -59,6 +59,7 @@ public class InventoryScreen implements Screen {
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(false);
 
                 if (mapBtn.containsLocation(Input.getTouchedLocation())){
                     inventoryScreen.dispose();
@@ -75,6 +76,11 @@ public class InventoryScreen implements Screen {
                     game.setScreen(new MenuScreen(game));
                 }
 
+                return super.touchUp(screenX, screenY, pointer, button);
+            }
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(true);
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
@@ -127,7 +133,6 @@ public class InventoryScreen implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        Gdx.input.setInputProcessor(null);
+        Utility.screenDispose(batch);
     }
 }

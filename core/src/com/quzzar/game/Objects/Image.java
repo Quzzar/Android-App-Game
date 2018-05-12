@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
+import com.quzzar.game.Input;
 import com.quzzar.game.Utility;
 
 public class Image {
@@ -34,6 +35,10 @@ public class Image {
 
     public double getHeight() {
         return height;
+    }
+
+    public void setLocation(Location newLocation){
+        location = newLocation;
     }
 
     public boolean containsLocation(Location pressedLoc){

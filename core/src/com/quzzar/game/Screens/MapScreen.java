@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
 import com.quzzar.game.Objects.*;
+import com.quzzar.game.Utility;
 
 public class MapScreen implements Screen {
 
@@ -40,6 +41,7 @@ public class MapScreen implements Screen {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(false);
 
                 //Change map area button
                 //Currently has same function as play button
@@ -49,7 +51,11 @@ public class MapScreen implements Screen {
 
                 return super.touchUp(screenX, screenY, pointer, button);
             }
-
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                Input.setNone(true);
+                return super.touchUp(screenX, screenY, pointer, button);
+            }
         });
 
     }
@@ -98,6 +104,6 @@ public class MapScreen implements Screen {
 
     @Override
     public void dispose() {
-        Gdx.input.setInputProcessor(null);
+        Utility.screenDispose(batch);
     }
 }

@@ -21,6 +21,7 @@ public class MenuScreen implements Screen{
 
     private final Button playBtn;
     private final Button exitBtn;
+    private final Button settingsBtn;
 
     private final Image logoImg;
 
@@ -33,17 +34,20 @@ public class MenuScreen implements Screen{
         final MenuScreen menuScreen = this;
 
         logoImg = new Image(new Texture("menu/gamelogo.png"),
-                new Location(0.5, 0.8),
-                0.2,0.2);
+                new Location(0.5, 0.85),
+                0.25,0.25);
 
 
         playBtn = new Button(new Texture("menu/play.png"), new Texture("menu/play_pressed.png"),
-                new Location(0.5, 0.65),
+                new Location(0.5, 0.6),
                 0.2, 0.2);
 
+        settingsBtn = new Button(new Texture("menu/settings.png"), new Texture("menu/settings_pressed.png"),
+                new Location(0.5, 0.4),
+                0.15, 0.15);
 
         exitBtn = new Button(new Texture("menu/exit.png"), new Texture("menu/exit_pressed.png"),
-                new Location(0.5, 0.4),
+                new Location(0.5, 0.2),
                 0.2, 0.2);
 
 
@@ -58,6 +62,12 @@ public class MenuScreen implements Screen{
                     Player.create();
 
                     game.setScreen(new GameScreen(game));
+                }
+
+                //Settings game button
+                if (settingsBtn.containsLocation(Input.getTouchedLocation())){
+                    menuScreen.dispose();
+                    game.setScreen(new SettingsScreen(game));
                 }
 
                 //Exit button
@@ -84,16 +94,22 @@ public class MenuScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
 
-        if(exitBtn.containsLocation(Input.getTouchedLocation())){
-            exitBtn.drawPressed(batch);
-        } else {
-            exitBtn.drawIdle(batch);
-        }
-
         if(playBtn.containsLocation(Input.getTouchedLocation())){
             playBtn.drawPressed(batch);
         } else {
             playBtn.drawIdle(batch);
+        }
+
+        if(settingsBtn.containsLocation(Input.getTouchedLocation())){
+            settingsBtn.drawPressed(batch);
+        } else {
+            settingsBtn.drawIdle(batch);
+        }
+
+        if(exitBtn.containsLocation(Input.getTouchedLocation())){
+            exitBtn.drawPressed(batch);
+        } else {
+            exitBtn.drawIdle(batch);
         }
 
         logoImg.draw(batch);

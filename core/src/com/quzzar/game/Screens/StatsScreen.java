@@ -20,7 +20,7 @@ public class StatsScreen implements Screen {
 
         this.batch = new SpriteBatch();
 
-        sideMenu = new SideMenu(new Texture("Tolsimir.jpg"));
+        sideMenu = new SideMenu(new Texture("misc/Tolsimir.jpg"));
 
 
     }

@@ -19,6 +19,7 @@ public class GameScreen implements Screen {
 
     private Button symbolBtn;
 
+    private Button mapBtn;
 
     public GameScreen(final GameMain game){
 
@@ -32,6 +33,9 @@ public class GameScreen implements Screen {
         symbolBtn = new Button(new Texture("symbol.png"),new Texture("badlogic.jpg"),
                 new Location(0.1,0.1),0.1,0.1);
 
+        mapBtn = new Button(new Texture("symbol.png"),new Texture("badlogic.jpg"),
+                new Location(0.9,0.1),0.1,0.1);
+
         // Register this class as an input processor
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
@@ -43,6 +47,11 @@ public class GameScreen implements Screen {
                     game.setScreen(new EquipScreen(game));
                 }
 
+                if (mapBtn.containsLocation(Input.getTouchedLocation())){
+                    gameScreen.dispose();
+                    game.setScreen(new MapScreen(game));
+                }
+
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
@@ -52,7 +61,7 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(18, 69, 91, 0.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
@@ -61,6 +70,12 @@ public class GameScreen implements Screen {
             symbolBtn.drawPressed(batch);
         } else {
             symbolBtn.drawIdle(batch);
+        }
+
+        if(mapBtn.containsLocation(Input.getTouchedLocation())){
+            mapBtn.drawPressed(batch);
+        } else {
+            mapBtn.drawIdle(batch);
         }
 
         batch.end();

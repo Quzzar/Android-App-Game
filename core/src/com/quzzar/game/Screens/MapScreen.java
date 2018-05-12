@@ -32,7 +32,7 @@ public class MapScreen implements Screen {
                 new Location(0.5, 0.5),
                 0.2,0.4);
 
-        arrowBtn = new Button(new Texture("mapArrow.jpg"), new Texture("mapArrow.jpg"),
+        arrowBtn = new Button(new Texture("mapArrow.png"), new Texture("mapArrow.png"),
                 new Location(0.5, 0.3),
                 0.1, 0.3);
 

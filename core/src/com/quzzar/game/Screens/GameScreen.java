@@ -35,7 +35,7 @@ public class GameScreen implements Screen {
         symbolBtn = new Button(new Texture("game/symbol.png"),new Texture("game/symbol.png"),
                 new Location(0.1,0.1),0.1,0.1);
 
-        mapBtn = new Button(new Texture("game/symbol.png"),new Texture("game/symbol.png"),
+        mapBtn = new Button(new Texture("game/mapButton.png"),new Texture("game/mapButton.png"),
                 new Location(0.9,0.1),0.1,0.1);
 
         backToMainBtn = new Button(new Texture("game/toMain.png"),new Texture("game/toMain.png"),

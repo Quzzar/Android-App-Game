@@ -17,9 +17,11 @@ public class SideMenu {
 
     public SideMenu(Texture leftBackTex){
 
-        backPanel = new Image(new Texture("back_panel.jpg"),
+        backPanel = new Image(new Texture("game/inventory/back_panel.jpg"),
                 new Location(0.85,0.5),
                 0.3,1);
+
+
 
         leftBackground = new Image(leftBackTex,
                 new Location(0.35,0.5),

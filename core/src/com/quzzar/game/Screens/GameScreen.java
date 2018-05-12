@@ -19,9 +19,6 @@ public class GameScreen implements Screen {
 
     private Button symbolBtn;
 
-    private Button mapBtn;
-
-    private Button backToMainBtn;
 
     public GameScreen(final GameMain game){
 
@@ -35,11 +32,6 @@ public class GameScreen implements Screen {
         symbolBtn = new Button(new Texture("game/symbol.png"),new Texture("game/symbol.png"),
                 new Location(0.1,0.1),0.1,0.1);
 
-        mapBtn = new Button(new Texture("game/mapButton.png"),new Texture("game/mapButton.png"),
-                new Location(0.9,0.1),0.1,0.1);
-
-        backToMainBtn = new Button(new Texture("game/toMain.png"),new Texture("game/toMain.png"),
-                new Location(0.1,0.9),0.1,0.1);
 
         // Register this class as an input processor
         Gdx.input.setInputProcessor(new InputAdapter() {
@@ -49,17 +41,7 @@ public class GameScreen implements Screen {
                 //Play game button
                 if (symbolBtn.containsLocation(Input.getTouchedLocation())){
                     gameScreen.dispose();
-                    game.setScreen(new EquipScreen(game));
-                }
-
-                if (mapBtn.containsLocation(Input.getTouchedLocation())){
-                    gameScreen.dispose();
-                    game.setScreen(new MapScreen(game));
-                }
-
-                if (backToMainBtn.containsLocation(Input.getTouchedLocation())){
-                    gameScreen.dispose();
-                    game.setScreen(new MenuScreen(game));
+                    game.setScreen(new InventoryScreen(game));
                 }
 
                 return super.touchUp(screenX, screenY, pointer, button);
@@ -76,23 +58,7 @@ public class GameScreen implements Screen {
 
         batch.begin();
 
-        if(symbolBtn.containsLocation(Input.getTouchedLocation())){
-            symbolBtn.drawPressed(batch);
-        } else {
-            symbolBtn.drawIdle(batch);
-        }
-
-        if(mapBtn.containsLocation(Input.getTouchedLocation())){
-            mapBtn.drawPressed(batch);
-        } else {
-            mapBtn.drawIdle(batch);
-        }
-
-        if(backToMainBtn.containsLocation(Input.getTouchedLocation())){
-            backToMainBtn.drawPressed(batch);
-        } else {
-            backToMainBtn.drawIdle(batch);
-        }
+        symbolBtn.draw(batch);
 
         batch.end();
 

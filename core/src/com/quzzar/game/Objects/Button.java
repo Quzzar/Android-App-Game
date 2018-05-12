@@ -2,6 +2,7 @@ package com.quzzar.game.Objects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.quzzar.game.Input;
 
 public class Button{
 
@@ -39,6 +40,14 @@ public class Button{
 
     public boolean containsLocation(Location pressedLoc){
         return idleImage.containsLocation(pressedLoc);
+    }
+
+    public void draw(SpriteBatch batch){
+        if(containsLocation(Input.getTouchedLocation())){
+            drawPressed(batch);
+        } else {
+            drawIdle(batch);
+        }
     }
 
     public void drawIdle(SpriteBatch batch){

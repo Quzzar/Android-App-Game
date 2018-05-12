@@ -28,11 +28,11 @@ public class MapScreen implements Screen {
 
         final MapScreen mapScreen = this;
 
-        mapImg = new Image(new Texture("mapImg.jpg"),
+        mapImg = new Image(new Texture("game/map/mapImg.jpg"),
                 new Location(0.5, 0.5),
                 0.2,0.4);
 
-        arrowBtn = new Button(new Texture("mapArrow.png"), new Texture("mapArrow.png"),
+        arrowBtn = new Button(new Texture("game/map/mapArrow.png"), new Texture("game/map/mapArrow.png"),
                 new Location(0.5, 0.3),
                 0.1, 0.3);
 

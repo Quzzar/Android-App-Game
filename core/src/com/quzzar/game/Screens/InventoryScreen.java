@@ -22,7 +22,7 @@ public class InventoryScreen implements Screen {
 
         this.batch = new SpriteBatch();
 
-        this.sideMenu = new SideMenu(new Texture("mapImg.jpg"));
+        this.sideMenu = new SideMenu(new Texture("game/map/mapImg.jpg"));
 
     }
 

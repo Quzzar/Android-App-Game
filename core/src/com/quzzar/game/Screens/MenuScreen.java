@@ -11,6 +11,8 @@ import com.quzzar.game.Input;
 import com.quzzar.game.Objects.*;
 import com.quzzar.game.Utility;
 
+import java.io.File;
+
 public class MenuScreen implements Screen{
 
     private final GameMain game;
@@ -30,17 +32,17 @@ public class MenuScreen implements Screen{
 
         final MenuScreen menuScreen = this;
 
-        logoImg = new Image(new Texture("/mainMenu/gamelogo.jpg"),
+        logoImg = new Image(new Texture("menu/gamelogo.png"),
                 new Location(0.5, 0.8),
                 0.2,0.2);
 
 
-        playBtn = new Button(new Texture("/mainMenu/play.png"), new Texture("/mainMenu/play.png"),
+        playBtn = new Button(new Texture("menu/play.png"), new Texture("menu/play_pressed.png"),
                 new Location(0.5, 0.65),
                 0.2, 0.2);
 
 
-        exitBtn = new Button(new Texture("/mainMenu/exit.png"), new Texture("/mainMenu/exit.png"),
+        exitBtn = new Button(new Texture("menu/exit.png"), new Texture("menu/exit_pressed.png"),
                 new Location(0.5, 0.4),
                 0.2, 0.2);
 

@@ -4,7 +4,11 @@ public enum ItemGroup {
 
     CONSUMABLE,
     ARMOR,
+    HELMET,
+    RING,
+    NECKLACE,
     WEAPON,
-    QUEST;
+    QUEST,
+    GENERIC
 
 }

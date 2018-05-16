@@ -4,11 +4,11 @@ import com.quzzar.game.Inventory.Item;
 import com.quzzar.game.Inventory.ItemGroup;
 import com.quzzar.game.Inventory.ItemType;
 
-public class Armor extends Item {
+public class Helmet extends Item {
 
     private int defenseMod;
 
-    public Armor(ItemType itemType, int amount, String displayName, int defenseMod) {
+    public Helmet(ItemType itemType, int amount, String displayName, int defenseMod) {
         super(itemType, amount, displayName);
 
         this.defenseMod = defenseMod;
@@ -16,7 +16,7 @@ public class Armor extends Item {
 
     @Override
     public ItemGroup getItemGroup() {
-        return ItemGroup.ARMOR;
+        return ItemGroup.HELMET;
     }
 
     public int getDefenseMod() {

@@ -41,7 +41,7 @@ public class MapScreen implements Screen {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                Input.setNone(false);
+                Input.begin();
 
                 //Change map area button
                 //Currently has same function as play button
@@ -49,11 +49,7 @@ public class MapScreen implements Screen {
                     mapScreen.dispose();
                 }
 
-                return super.touchUp(screenX, screenY, pointer, button);
-            }
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                Input.setNone(true);
+                Input.end();
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });

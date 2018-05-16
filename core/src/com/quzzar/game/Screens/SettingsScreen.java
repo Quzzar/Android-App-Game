@@ -35,18 +35,14 @@ public class SettingsScreen implements Screen {
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                Input.setNone(false);
+                Input.begin();
 
                 if (backToMainBtn.containsLocation(Input.getTouchedLocation())){
                     settingsScreen.dispose();
                     game.setScreen(new MenuScreen(game));
                 }
 
-                return super.touchUp(screenX, screenY, pointer, button);
-            }
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                Input.setNone(true);
+                Input.end();
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });

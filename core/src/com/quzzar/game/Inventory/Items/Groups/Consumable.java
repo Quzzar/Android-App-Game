@@ -13,8 +13,9 @@ public class Consumable extends Item {
     private int defenseBoost;
     private int healthIncrease;
 
-    public Consumable(ItemType itemType, int amount, double timeDuration, int damageBoost, int speedBoost, int defenseBoost, int healthIncrease) {
-        super(itemType, amount);
+    public Consumable(ItemType itemType, int amount, String displayName,
+                      double timeDuration, int damageBoost, int speedBoost, int defenseBoost, int healthIncrease) {
+        super(itemType, amount, displayName);
 
         this.timeDuration = timeDuration;
 

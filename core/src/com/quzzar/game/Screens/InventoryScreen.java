@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
+import com.quzzar.game.Inventory.Display.EquipmentDisplay;
 import com.quzzar.game.Inventory.Display.SideMenu;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Location;
@@ -21,6 +22,8 @@ public class InventoryScreen implements Screen {
 
     private SideMenu sideMenu;
 
+    private EquipmentDisplay equipmentDisplay;
+
 
     private Button mapBtn;
 
@@ -29,6 +32,8 @@ public class InventoryScreen implements Screen {
     private Button settingsBtn;
 
     private Button exitToMainBtn;
+
+    private Button backBtn;
 
 
     public InventoryScreen(final GameMain game) {
@@ -39,7 +44,9 @@ public class InventoryScreen implements Screen {
 
         final InventoryScreen inventoryScreen = this;
 
-        this.sideMenu = new SideMenu(new Texture("game/inventory/equip_panel.png"));
+        this.sideMenu = new SideMenu(new Texture("misc/stone_1.jpg"));
+
+        this.equipmentDisplay = new EquipmentDisplay();
 
 
         mapBtn = new Button(new Texture("game/inventory/mapButton.png"),new Texture("game/inventory/mapButton.png"),
@@ -54,12 +61,15 @@ public class InventoryScreen implements Screen {
         exitToMainBtn = new Button(new Texture("game/inventory/exitBtn.png"),new Texture("game/inventory/exitBtn.png"),
                 new Location(0.9,0.9),0.1,0.1);
 
+        this.backBtn = new Button(new Texture("menu/settings/toMain.png"),new Texture("menu/settings/toMain.png"),
+                new Location(0.1,0.9),0.1,Utility.adjustedHeightScale(0.1,0.1));
+
 
         // Register this class as an input processor
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                Input.setNone(false);
+                Input.begin();
 
                 if (mapBtn.containsLocation(Input.getTouchedLocation())){
                     inventoryScreen.dispose();
@@ -76,11 +86,12 @@ public class InventoryScreen implements Screen {
                     game.setScreen(new MenuScreen(game));
                 }
 
-                return super.touchUp(screenX, screenY, pointer, button);
-            }
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                Input.setNone(true);
+                if (backBtn.containsLocation(Input.getTouchedLocation())){
+                    inventoryScreen.dispose();
+                    game.setScreen(new GameScreen(game));
+                }
+
+                Input.end();
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
@@ -101,11 +112,13 @@ public class InventoryScreen implements Screen {
         batch.begin();
 
         sideMenu.draw(batch);
+        equipmentDisplay.draw(batch);
 
         mapBtn.draw(batch);
         equipBtn.draw(batch);
         settingsBtn.draw(batch);
         exitToMainBtn.draw(batch);
+        backBtn.draw(batch);
 
         batch.end();
 

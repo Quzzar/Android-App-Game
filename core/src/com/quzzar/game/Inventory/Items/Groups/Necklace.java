@@ -4,25 +4,25 @@ import com.quzzar.game.Inventory.Item;
 import com.quzzar.game.Inventory.ItemGroup;
 import com.quzzar.game.Inventory.ItemType;
 
-public class Weapon extends Item {
+public class Necklace extends Item {
 
-    private int damageMod;
+    private int defenseMod;
     private int speedMod;
 
-    public Weapon(ItemType itemType, int amount, String displayName, int damageMod, int speedMod) {
+    public Necklace(ItemType itemType, int amount, String displayName, int defenseMod, int speedMod) {
         super(itemType, amount, displayName);
 
-        this.damageMod = damageMod;
+        this.defenseMod = defenseMod;
         this.speedMod = speedMod;
     }
 
     @Override
     public ItemGroup getItemGroup() {
-        return ItemGroup.WEAPON;
+        return ItemGroup.NECKLACE;
     }
 
-    public int getDamageMod() {
-        return damageMod;
+    public int getDefenseMod() {
+        return defenseMod;
     }
 
     public int getSpeedMod() {

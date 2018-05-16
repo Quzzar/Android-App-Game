@@ -3,6 +3,7 @@ package com.quzzar.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.Inventory.Item;
+import com.quzzar.game.Inventory.ItemType;
 import com.quzzar.game.Objects.Image;
 import com.quzzar.game.Objects.Player;
 
@@ -12,17 +13,8 @@ public class Utility {
         Gdx.app.log(tag, message);
     }
 
-    public static Item getItemFromImage(Image image){
-        for(Item item : Player.getInventory().getContents()){
-            if(item.getTexture().equals(image.getTexture())){
-                return item;
-            }
-        }
-        return null;
-    }
-
     public static void screenDispose(SpriteBatch batch){
-        Input.setNone(true);
+        Input.end();
         batch.dispose();
         Gdx.input.setInputProcessor(null);
     }

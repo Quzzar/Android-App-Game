@@ -52,7 +52,7 @@ public class MenuScreen implements Screen{
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                Input.setNone(false);
+                Input.begin();
 
                 //Play game button
                 if (playBtn.containsLocation(Input.getTouchedLocation())){
@@ -75,11 +75,7 @@ public class MenuScreen implements Screen{
                     Gdx.app.exit();
                 }
 
-                return super.touchUp(screenX, screenY, pointer, button);
-            }
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                Input.setNone(true);
+                Input.end();
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });

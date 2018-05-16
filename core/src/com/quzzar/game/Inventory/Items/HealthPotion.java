@@ -7,7 +7,7 @@ import com.quzzar.game.Inventory.Items.Groups.Consumable;
 public class HealthPotion extends Consumable{
 
     public HealthPotion(int amount, double timeDuration, int damageBoost, int speedBoost, int defenseBoost, int healthIncrease) {
-        super(ItemType.HEALTH_POTION, amount, timeDuration, damageBoost, speedBoost, defenseBoost, healthIncrease);
+        super(ItemType.HEALTH_POTION, amount, "Health Potion", timeDuration, damageBoost, speedBoost, defenseBoost, healthIncrease);
     }
 
     @Override

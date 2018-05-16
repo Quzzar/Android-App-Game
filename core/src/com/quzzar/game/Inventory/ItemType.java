@@ -1,6 +1,7 @@
 package com.quzzar.game.Inventory;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.quzzar.game.Objects.Image;
 
 public enum ItemType {
 
@@ -8,7 +9,8 @@ public enum ItemType {
     AXE("game/items/axe.png",ItemGroup.WEAPON),
     LEATHER_ARMOR("game/items/leather_armor.png",ItemGroup.ARMOR),
     HEALTH_POTION("game/items/health_potion.png",ItemGroup.CONSUMABLE),
-    BOOK("game/items/book.png",ItemGroup.QUEST);
+    BOOK("game/items/book.png",ItemGroup.QUEST),
+    NOTHING("game/items/nothing.png",ItemGroup.GENERIC);
 
 
     private Texture texture;
@@ -27,6 +29,13 @@ public enum ItemType {
         return itemGroup;
     }
 
-
+    public static ItemType getFromImage(Image image){
+        for(ItemType itemType : ItemType.values()){
+            if(itemType.getTexture().equals(image.getTexture())){
+                return itemType;
+            }
+        }
+        return null;
+    }
 
 }

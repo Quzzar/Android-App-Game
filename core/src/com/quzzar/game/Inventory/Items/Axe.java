@@ -6,7 +6,7 @@ import com.quzzar.game.Inventory.Items.Groups.Weapon;
 public class Axe extends Weapon {
 
     public Axe(int amount, int damageMod, int speedMod) {
-        super(ItemType.AXE, amount, damageMod, speedMod);
+        super(ItemType.AXE, amount, "Axe", damageMod, speedMod);
     }
 
     @Override

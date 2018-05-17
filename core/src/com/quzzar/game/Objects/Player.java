@@ -1,12 +1,21 @@
 package com.quzzar.game.Objects;
 
 import com.quzzar.game.Inventory.Inventory;
-import com.quzzar.game.Inventory.Items.Axe;
+import com.quzzar.game.Inventory.Items.AmethystMedallion;
+import com.quzzar.game.Inventory.Items.BoneAmulet;
+import com.quzzar.game.Inventory.Items.BoneHelmet;
 import com.quzzar.game.Inventory.Items.Book;
+import com.quzzar.game.Inventory.Items.BrassNecklace;
+import com.quzzar.game.Inventory.Items.EmeraldRing;
+import com.quzzar.game.Inventory.Items.GoldAxe;
+import com.quzzar.game.Inventory.Items.GoldRing;
 import com.quzzar.game.Inventory.Items.Groups.Armor;
 import com.quzzar.game.Inventory.Items.Groups.Weapon;
 import com.quzzar.game.Inventory.Items.HealthPotion;
+import com.quzzar.game.Inventory.Items.IronHelmet;
 import com.quzzar.game.Inventory.Items.LeatherArmor;
+import com.quzzar.game.Inventory.Items.OnyxRing;
+import com.quzzar.game.Inventory.Items.RubyRing;
 import com.quzzar.game.Inventory.Items.ShortSword;
 
 public class Player {
@@ -28,18 +37,20 @@ public class Player {
 
             inventory = new Inventory(28);
 
-            inventory.addItem(new Axe(1,3,-1));
+            inventory.addItem(new GoldAxe(1,3,-1));
             inventory.addItem(new ShortSword(1,2,0));
-            inventory.addItem(new ShortSword(1,2,0));
-            inventory.addItem(new LeatherArmor(1,2));
-            inventory.addItem(new ShortSword(1,2,0));
+            inventory.addItem(new LeatherArmor(1,3));
             inventory.addItem(new Book(1,"A Forsaken Land","The Old Man on the Hill"));
-            inventory.addItem(new ShortSword(1,2,0));
             inventory.addItem(new HealthPotion(1,2,0,0,0,5));
-            inventory.addItem(new HealthPotion(1,2,0,0,0,5));
-            inventory.addItem(new ShortSword(1,2,0));
-            inventory.addItem(new Axe(1,3,-1));
-            inventory.addItem(new Axe(1,3,-1));
+            inventory.addItem(new AmethystMedallion(1,0,0));
+            inventory.addItem(new BoneAmulet(1,2,-2));
+            inventory.addItem(new BrassNecklace(1,0,0));
+            inventory.addItem(new EmeraldRing(1,1,0));
+            inventory.addItem(new GoldRing(1,0,2));
+            inventory.addItem(new OnyxRing(1,15,0));
+            inventory.addItem(new RubyRing(1,2,0));
+            inventory.addItem(new BoneHelmet(1,1));
+            inventory.addItem(new IronHelmet(1,2));
 
             newPlayer = false;
 

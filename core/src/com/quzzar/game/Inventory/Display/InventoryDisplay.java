@@ -177,6 +177,13 @@ public class InventoryDisplay {
     }
 
     private void swapItems(Item selectedItem, Item newItem){
+        // If either are equipped, only swap if they're of the same ItemGroup or either are Nothing
+        if(inventory.isEquipped(selectedItem)||inventory.isEquipped(newItem)){
+            if(!selectedItem.isNothing() && !newItem.isNothing() && !selectedItem.getItemGroup().equals(newItem.getItemGroup())){
+                return;
+            }
+        }
+
         int selItemIndex = inventory.getFullContents().indexOf(selectedItem);
         int newItemIndex = inventory.getFullContents().indexOf(newItem);
 

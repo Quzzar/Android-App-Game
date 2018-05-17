@@ -110,4 +110,8 @@ public class Inventory {
         return count;
     }
 
+    public boolean isEquipped(Item item){
+        return fullContents.indexOf(item)<equipSlots;
+    }
+
 }

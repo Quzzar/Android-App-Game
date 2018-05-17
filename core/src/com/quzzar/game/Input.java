@@ -36,11 +36,11 @@ public class Input {
     }
 
     public static int xScaleToX(double xScale){
-        return (int)xScale*Gdx.graphics.getWidth();
+        return (int)(xScale*Gdx.graphics.getWidth());
     }
 
     public static int yScaleToY(double yScale){
-        return (int) yScale*Gdx.graphics.getHeight(); //(Gdx.graphics.getHeight()-yScale*Gdx.graphics.getHeight());
+        return (int)(yScale*Gdx.graphics.getHeight()); // Gdx.graphics.getHeight()-yScale*Gdx.graphics.getHeight()
     }
 
 }

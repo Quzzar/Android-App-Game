@@ -3,10 +3,10 @@ package com.quzzar.game.Inventory.Items;
 import com.quzzar.game.Inventory.ItemType;
 import com.quzzar.game.Inventory.Items.Groups.Weapon;
 
-public class Axe extends Weapon {
+public class GoldAxe extends Weapon {
 
-    public Axe(int amount, int damageMod, int speedMod) {
-        super(ItemType.AXE, amount, "Axe", damageMod, speedMod);
+    public GoldAxe(int amount, int damageMod, int speedMod) {
+        super(ItemType.GOLD_AXE, amount, "Gold Axe", damageMod, speedMod);
     }
 
     @Override

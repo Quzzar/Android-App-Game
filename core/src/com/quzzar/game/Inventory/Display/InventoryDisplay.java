@@ -189,6 +189,7 @@ public class InventoryDisplay {
 
         inventory.getFullContents().set(selItemIndex,newItem);
         inventory.getFullContents().set(newItemIndex,selectedItem);
+
     }
 
 }

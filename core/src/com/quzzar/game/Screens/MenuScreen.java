@@ -8,12 +8,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
+import com.quzzar.game.Inventory.Display.Background;
 import com.quzzar.game.Objects.*;
 import com.quzzar.game.Utility;
 
 public class MenuScreen implements Screen{
 
     private final GameMain game;
+    private final MenuScreen menuScreen = this;
 
     private SpriteBatch batch;
 
@@ -23,13 +25,13 @@ public class MenuScreen implements Screen{
 
     private final Image logoImg;
 
+    private Background mainBack;
+
     public MenuScreen(final GameMain game){
 
         this.game = game;
 
         this.batch = new SpriteBatch();
-
-        final MenuScreen menuScreen = this;
 
         logoImg = new Image(new Texture("menu/gamelogo.png"),
                 new Location(0.5, 0.85),
@@ -48,6 +50,12 @@ public class MenuScreen implements Screen{
                 new Location(0.5, 0.2),
                 0.2, 0.2);
 
+        mainBack = new Background(new Texture("menu/menuBack.png"));
+
+    }
+
+    @Override
+    public void show() {
 
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
@@ -65,8 +73,7 @@ public class MenuScreen implements Screen{
 
                 //Settings game button
                 if (settingsBtn.containsLocation(Input.getTouchedLocation())){
-                    menuScreen.dispose();
-                    game.setScreen(new SettingsScreen(game));
+                    game.setScreen(new SettingsScreen(game, menuScreen));
                 }
 
                 //Exit button
@@ -83,16 +90,13 @@ public class MenuScreen implements Screen{
     }
 
     @Override
-    public void show() {
-
-    }
-
-    @Override
     public void render(float delta) {
 
         Gdx.gl.glClearColor(0.15f, 0.15f, 0.3f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
+
+        mainBack.draw(batch);
 
         if(playBtn.containsLocation(Input.getTouchedLocation())){
             playBtn.drawPressed(batch);

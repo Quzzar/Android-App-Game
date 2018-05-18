@@ -21,6 +21,13 @@ public class Image {
         this.height = heightScale;
     }
 
+    public Image(Texture texture, Location location, double scale) {
+        this.texture = texture;
+        this.location = location;
+        this.width = scale;
+        this.height = texture.getHeight()*(scale/texture.getWidth());
+    }
+
     public Texture getTexture() {
         return texture;
     }

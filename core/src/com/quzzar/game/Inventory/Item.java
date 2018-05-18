@@ -39,7 +39,7 @@ public class Item {
     }
 
     public void createImage(Location location, double wScale, double hScale){
-        image = new Image(itemType.getTexture(), location, wScale, hScale);
+        this.image = new Image(itemType.getTexture(), location, wScale, hScale);
     }
 
     public String getDisplayName(){

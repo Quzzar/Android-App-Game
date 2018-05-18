@@ -1,5 +1,6 @@
 package com.quzzar.game.Objects;
 
+import com.badlogic.gdx.Gdx;
 import com.quzzar.game.Inventory.Inventory;
 import com.quzzar.game.Inventory.Items.AmethystMedallion;
 import com.quzzar.game.Inventory.Items.BoneAmulet;
@@ -10,6 +11,9 @@ import com.quzzar.game.Inventory.Items.EmeraldRing;
 import com.quzzar.game.Inventory.Items.GoldAxe;
 import com.quzzar.game.Inventory.Items.GoldRing;
 import com.quzzar.game.Inventory.Items.Groups.Armor;
+import com.quzzar.game.Inventory.Items.Groups.Helmet;
+import com.quzzar.game.Inventory.Items.Groups.Necklace;
+import com.quzzar.game.Inventory.Items.Groups.Ring;
 import com.quzzar.game.Inventory.Items.Groups.Weapon;
 import com.quzzar.game.Inventory.Items.HealthPotion;
 import com.quzzar.game.Inventory.Items.IronHelmet;
@@ -20,20 +24,26 @@ import com.quzzar.game.Inventory.Items.ShortSword;
 
 public class Player {
 
+    final private static int healthBase = 10;
     final private static int damageBase = 3;
     final private static int speedBase = 5;
     final private static int defenseBase = 0;
 
     private static Inventory inventory;
 
+    private static int health;
     private static int damage;
     private static int speed;
     private static int defense;
+
+    final private static int maxHealth = healthBase;
 
     private static boolean newPlayer = true;
 
     public static boolean create(){
         if(newPlayer){
+
+            health = maxHealth;
 
             inventory = new Inventory(28);
 
@@ -79,10 +89,47 @@ public class Player {
             damage += ((Weapon)inventory.getSecondHand()).getDamageMod();
             speed += ((Weapon)inventory.getSecondHand()).getSpeedMod();
         }
+
+        if(!inventory.getHelmet().isNothing()){
+            defense += ((Helmet)inventory.getHelmet()).getDefenseMod();
+        }
+
+        if(!inventory.getNecklace().isNothing()){
+            defense += ((Necklace)inventory.getNecklace()).getDefenseMod();
+            speed += ((Necklace)inventory.getNecklace()).getSpeedMod();
+        }
+
+        if(!inventory.getFirstRing().isNothing()){
+            defense += ((Ring)inventory.getFirstRing()).getDefenseMod();
+            speed += ((Ring)inventory.getFirstRing()).getSpeedMod();
+        }
+
+        if(!inventory.getSecondRing().isNothing()){
+            defense += ((Ring)inventory.getSecondRing()).getDefenseMod();
+            speed += ((Ring)inventory.getSecondRing()).getSpeedMod();
+        }
+
+        // Temporary code
+        if(Player.getHealth()<=0){
+            Gdx.app.exit();
+        }
+
     }
 
     public static boolean isCreated(){
         return !newPlayer;
+    }
+
+    public static int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public static int getHealth() {
+        return health;
+    }
+
+    public static void hurt(int damage) {
+        health -= damage;
     }
 
     public static int getDamage() {

@@ -14,6 +14,11 @@ public class Button{
         this.pressedImage = new Image(pressed,location,widthScale,heightScale);
     }
 
+    public Button(Texture idle, Texture pressed, Location location, double scale){
+        this.idleImage = new Image(idle,location,scale);
+        this.pressedImage = new Image(pressed,location,scale);
+    }
+
     public Image getIdleImage(){
         return idleImage;
     }

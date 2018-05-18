@@ -2,12 +2,9 @@ package com.quzzar.game.Inventory.Display;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.quzzar.game.Input;
+import com.quzzar.game.Fonts.FontType;
 import com.quzzar.game.Inventory.Inventory;
-import com.quzzar.game.Inventory.Item;
-import com.quzzar.game.Inventory.ItemGroup;
-import com.quzzar.game.Inventory.Items.Groups.Armor;
-import com.quzzar.game.Inventory.Items.Groups.Weapon;
+import com.quzzar.game.Objects.Font;
 import com.quzzar.game.Objects.Image;
 import com.quzzar.game.Objects.Location;
 import com.quzzar.game.Objects.Player;
@@ -24,6 +21,8 @@ public class EquipmentDisplay {
     private Image secondRingImage;
 
     private Inventory inventory = Player.getInventory();
+
+    private Font statsFont;
 
     public EquipmentDisplay(){
 
@@ -47,6 +46,9 @@ public class EquipmentDisplay {
 
         secondRingImage = new Image(new Texture("game/inventory/equipment/ring_icon.png"),
                 new Location(0.52, 0.27),0.1, Utility.adjustedHeightScale(0.1,0.1));
+
+
+        statsFont = new Font(FontType.AK_SANS,3f);
 
     }
 
@@ -89,17 +91,33 @@ public class EquipmentDisplay {
         firstRingImage.draw(batch);
         secondRingImage.draw(batch);
 
+        statsFont.writeText(batch,"Damage: "+ Player.getDamage(), new Location(0.05,0.1));
+        statsFont.writeText(batch,"Speed: "+Player.getSpeed(), new Location(0.25,0.1));
+        statsFont.writeText(batch,"Defense: "+Player.getDefense(), new Location(0.45,0.1));
+
     }
 
     public void createItemImages(){
 
-        inventory.getFirstHand().createImage(firstHandImage.getLocation(),firstHandImage.getWidth(),firstHandImage.getHeight());
-        inventory.getSecondHand().createImage(secondHandImage.getLocation(),secondHandImage.getWidth(),secondHandImage.getHeight());
-        inventory.getArmor().createImage(armorImage.getLocation(),armorImage.getWidth(),armorImage.getHeight());
-        inventory.getHelmet().createImage(helmetImage.getLocation(),helmetImage.getWidth(),helmetImage.getHeight());
-        inventory.getNecklace().createImage(necklaceImage.getLocation(),necklaceImage.getWidth(),necklaceImage.getHeight());
-        inventory.getFirstRing().createImage(firstRingImage.getLocation(),firstRingImage.getWidth(),firstRingImage.getHeight());
-        inventory.getSecondRing().createImage(secondRingImage.getLocation(),secondRingImage.getWidth(),secondRingImage.getHeight());
+        double decreaseFactor = 0.02;
+
+        double widthDec = decreaseFactor;
+        double heightDec = Utility.adjustedHeightScale(widthDec,widthDec);
+
+        inventory.getFirstHand().createImage(firstHandImage.getLocation(),
+                firstHandImage.getWidth()-widthDec,firstHandImage.getHeight()-heightDec);
+        inventory.getSecondHand().createImage(secondHandImage.getLocation(),
+                secondHandImage.getWidth()-widthDec,secondHandImage.getHeight()-heightDec);
+        inventory.getArmor().createImage(armorImage.getLocation(),
+                armorImage.getWidth()-widthDec,armorImage.getHeight()-heightDec);
+        inventory.getHelmet().createImage(helmetImage.getLocation(),
+                helmetImage.getWidth()-widthDec,helmetImage.getHeight()-heightDec);
+        inventory.getNecklace().createImage(necklaceImage.getLocation(),
+                necklaceImage.getWidth()-widthDec,necklaceImage.getHeight()-heightDec);
+        inventory.getFirstRing().createImage(firstRingImage.getLocation(),
+                firstRingImage.getWidth()-widthDec,firstRingImage.getHeight()-heightDec);
+        inventory.getSecondRing().createImage(secondRingImage.getLocation(),
+                secondRingImage.getWidth()-widthDec,secondRingImage.getHeight()-heightDec);
 
     }
 
@@ -122,6 +140,10 @@ public class EquipmentDisplay {
         inventory.getNecklace().getImage().draw(batch);
         inventory.getFirstRing().getImage().draw(batch);
         inventory.getSecondRing().getImage().draw(batch);
+
+        statsFont.writeText(batch,"Damage: "+ Player.getDamage(), new Location(0.05,0.1));
+        statsFont.writeText(batch,"Speed: "+Player.getSpeed(), new Location(0.25,0.1));
+        statsFont.writeText(batch,"Defense: "+Player.getDefense(), new Location(0.45,0.1));
 
     }
 

@@ -14,6 +14,8 @@ import com.quzzar.game.Utility;
 public class MapScreen implements Screen {
 
     private final GameMain game;
+    private final MapScreen mapScreen = this;
+    private final Screen returningScreen;
 
     private SpriteBatch batch;
 
@@ -21,13 +23,12 @@ public class MapScreen implements Screen {
 
     private final Button arrowBtn;
 
-    public MapScreen(final GameMain game) {
+    public MapScreen(final GameMain game, final Screen returningScreen) {
 
         this.game = game;
+        this.returningScreen = returningScreen;
 
         this.batch = new SpriteBatch();
-
-        final MapScreen mapScreen = this;
 
         mapImg = new Image(new Texture("game/map/mapImg.jpg"),
                 new Location(0.5, 0.5),
@@ -36,6 +37,11 @@ public class MapScreen implements Screen {
         arrowBtn = new Button(new Texture("game/map/mapArrow.png"), new Texture("game/map/mapArrow.png"),
                 new Location(0.5, 0.3),
                 0.1, 0.3);
+
+    }
+
+    @Override
+    public void show() {
 
         Gdx.input.setInputProcessor(new InputAdapter() {
 
@@ -53,11 +59,6 @@ public class MapScreen implements Screen {
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
-
-    }
-
-    @Override
-    public void show() {
 
     }
 

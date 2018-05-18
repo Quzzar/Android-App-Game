@@ -21,6 +21,8 @@ import com.quzzar.game.Utility;
 public class EquipScreen implements Screen {
 
     private final GameMain game;
+    private final EquipScreen equipScreen = this;
+    private final Screen returningScreen;
 
     private SpriteBatch batch;
 
@@ -28,88 +30,91 @@ public class EquipScreen implements Screen {
 
     private Button backBtn;
 
-    public EquipScreen(final GameMain game) {
+    public EquipScreen(final GameMain game, final Screen returningScreen) {
 
         this.game = game;
+        this.returningScreen = returningScreen;
 
         this.batch = new SpriteBatch();
-
-        final EquipScreen equipScreen = this;
 
         this.inventoryDisplay = new InventoryDisplay();
 
         this.backBtn = new Button(new Texture("menu/settings/toMain.png"),new Texture("menu/settings/toMain.png"),
                 new Location(0.1,0.9),0.1,Utility.adjustedHeightScale(0.1,0.1));
 
-        Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureListener() {
-            @Override
-            public boolean touchDown(float x, float y, int pointer, int button) {
-                Input.begin();
-
-                if (backBtn.containsLocation(Input.getTouchedLocation())){
-                    equipScreen.dispose();
-                    game.setScreen(new InventoryScreen(game));
-                    return false;
-                }
-
-                inventoryDisplay.handleImagesPressed();
-                Input.end();
-                return false;
-            }
-            @Override
-            public boolean tap(float x, float y, int count, int button) {
-                return false;
-            }
-            @Override
-            public boolean longPress(float x, float y) {
-                Input.begin();
-
-                for(Item item : Player.getInventory().getFullContents()){
-                    if(item.getImage().containsLocation(Input.getTouchedLocation())){
-                        equipScreen.dispose();
-                        game.setScreen(new ItemInfoScreen(game, item));
-                        return false;
-                    }
-                }
-
-                Input.end();
-                return false;
-            }
-            @Override
-            public boolean fling(float velocityX, float velocityY, int button) {
-                return false;
-            }
-            @Override
-            public boolean pan(float x, float y, float deltaX, float deltaY) {
-                return false;
-            }
-            @Override
-            public boolean panStop(float x, float y, int pointer, int button) {
-                return false;
-            }
-            @Override
-            public boolean zoom(float initialDistance, float distance) {
-                return false;
-            }
-            @Override
-            public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
-                return false;
-            }
-            @Override
-            public void pinchStop() {
-
-            }
-        }));
-
     }
 
     @Override
     public void show() {
 
+        Gdx.input.setInputProcessor(new GestureDetector(20, 0.4f, 0.6f, 0.15f,
+                new GestureDetector.GestureListener() {
+                    @Override
+                    public boolean touchDown(float x, float y, int pointer, int button) {
+                        Input.begin();
+
+                        if (backBtn.containsLocation(Input.getTouchedLocation())){
+                            equipScreen.dispose();
+                            game.setScreen(new InventoryScreen(game, returningScreen));
+                            return false;
+                        }
+
+                        inventoryDisplay.handleImagesPressed();
+                        Input.end();
+                        return false;
+                    }
+                    @Override
+                    public boolean tap(float x, float y, int count, int button) {
+                        return false;
+                    }
+                    @Override
+                    public boolean longPress(float x, float y) {
+                        Input.begin();
+
+                        for(Item item : Player.getInventory().getFullContents()){
+                            if(item.getImage().containsLocation(Input.getTouchedLocation())){
+                                equipScreen.dispose();
+                                game.setScreen(new ItemInfoScreen(game, returningScreen, item));
+                                return false;
+                            }
+                        }
+
+                        Input.end();
+                        return false;
+                    }
+                    @Override
+                    public boolean fling(float velocityX, float velocityY, int button) {
+                        return false;
+                    }
+                    @Override
+                    public boolean pan(float x, float y, float deltaX, float deltaY) {
+                        return false;
+                    }
+                    @Override
+                    public boolean panStop(float x, float y, int pointer, int button) {
+                        return false;
+                    }
+                    @Override
+                    public boolean zoom(float initialDistance, float distance) {
+                        return false;
+                    }
+                    @Override
+                    public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+                        return false;
+                    }
+                    @Override
+                    public void pinchStop() {
+
+                    }
+                }));
+
     }
 
     @Override
     public void render(float delta) {
+
+        // To Keep the player's damage, speed, and defense updated
+        Player.update();
 
         Gdx.gl.glClearColor(0.15f, 0.15f, 0.3f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

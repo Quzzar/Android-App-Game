@@ -24,7 +24,10 @@ public class StatsScreen implements Screen {
 
         this.batch = new SpriteBatch();
 
-        sideMenu = new SideMenu(new Texture("misc/Tolsimir.jpg"));
+    }
+
+    @Override
+    public void show() {
 
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
@@ -35,11 +38,6 @@ public class StatsScreen implements Screen {
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
-
-    }
-
-    @Override
-    public void show() {
 
     }
 

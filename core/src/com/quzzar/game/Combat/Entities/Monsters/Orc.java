@@ -8,23 +8,4 @@ public class Orc extends Monster {
         super(EntityType.ORC, "Orc", 15, 10, 4, 2);
     }
 
-    @Override
-    public int getHealth() {
-        return super.getHealth();
-    }
-
-    @Override
-    public int getDamage() {
-        return super.getDamage();
-    }
-
-    @Override
-    public int getDefense() {
-        return super.getDefense();
-    }
-
-    @Override
-    public int getSpeed() {
-        return super.getSpeed();
-    }
 }

@@ -10,9 +10,8 @@ import com.quzzar.game.DataHandling.DataUtility;
 import com.quzzar.game.DataHandling.LoadData;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
-import com.quzzar.game.Inventory.Display.Background;
+import com.quzzar.game.Display.Background;
 import com.quzzar.game.Objects.*;
-import com.quzzar.game.Utility;
 
 public class MenuScreen implements Screen{
 

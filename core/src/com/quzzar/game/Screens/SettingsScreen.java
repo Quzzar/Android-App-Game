@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
-import com.quzzar.game.Inventory.Display.Background;
+import com.quzzar.game.Display.Background;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Location;
 import com.quzzar.game.Utility;

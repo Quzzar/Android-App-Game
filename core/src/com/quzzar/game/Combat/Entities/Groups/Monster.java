@@ -8,11 +8,11 @@ import java.util.Random;
 
 public class Monster extends Entity {
 
-    private int damage;
-    private int defense;
-    private int speed;
+    private double damage;
+    private double defense;
+    private double speed;
 
-    public Monster(EntityType entityType, String displayName, int health, int damage, int defense, int speed) {
+    public Monster(EntityType entityType, String displayName, double health, double damage, double defense, double speed) {
         super(entityType, displayName, health);
 
         this.damage = damage;
@@ -21,15 +21,15 @@ public class Monster extends Entity {
 
     }
 
-    public int getDamage() {
+    public double getDamage() {
         return damage;
     }
 
-    public int getDefense() {
+    public double getDefense() {
         return defense;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 

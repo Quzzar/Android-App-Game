@@ -1,20 +1,19 @@
 package com.quzzar.game.Generation;
 
-import com.quzzar.game.Inventory.Item;
-import com.quzzar.game.Inventory.Items.BoneHelmet;
-import com.quzzar.game.Inventory.Items.Book;
-import com.quzzar.game.Inventory.Items.EmeraldRing;
-import com.quzzar.game.Inventory.Items.GoldAxe;
-import com.quzzar.game.Inventory.Items.GoldRing;
-import com.quzzar.game.Inventory.Items.HealthPotion;
-import com.quzzar.game.Inventory.Items.HealthPotionGreater;
-import com.quzzar.game.Inventory.Items.HealthPotionLesser;
-import com.quzzar.game.Inventory.Items.IronHelmet;
-import com.quzzar.game.Inventory.Items.LeatherArmor;
-import com.quzzar.game.Inventory.Items.MagicBook;
-import com.quzzar.game.Inventory.Items.OnyxRing;
-import com.quzzar.game.Inventory.Items.RubyRing;
-import com.quzzar.game.Inventory.Items.ShortSword;
+import com.quzzar.game.Items.Item;
+import com.quzzar.game.Items.Items.BoneHelmet;
+import com.quzzar.game.Items.Items.EmeraldRing;
+import com.quzzar.game.Items.Items.GoldAxe;
+import com.quzzar.game.Items.Items.GoldRing;
+import com.quzzar.game.Items.Items.HealthPotion;
+import com.quzzar.game.Items.Items.HealthPotionGreater;
+import com.quzzar.game.Items.Items.HealthPotionLesser;
+import com.quzzar.game.Items.Items.IronHelmet;
+import com.quzzar.game.Items.Items.LeatherArmor;
+import com.quzzar.game.Items.Items.MagicBook;
+import com.quzzar.game.Items.Items.OnyxRing;
+import com.quzzar.game.Items.Items.RubyRing;
+import com.quzzar.game.Items.Items.ShortSword;
 
 import java.util.Random;
 

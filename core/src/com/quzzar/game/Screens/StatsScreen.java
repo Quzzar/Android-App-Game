@@ -3,11 +3,10 @@ package com.quzzar.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
-import com.quzzar.game.Inventory.Display.SideMenu;
+import com.quzzar.game.Display.SideMenu;
 import com.quzzar.game.Utility;
 
 public class StatsScreen implements Screen {

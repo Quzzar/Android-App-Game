@@ -35,8 +35,8 @@ public class CombatHandler {
 
     }
 
-    private static int calculateDamage(int attackerDamage, int defenderDefense){
-        return (int) Math.round(attackerDamage - attackerDamage*((defenderDefense*1.0)/20));
+    private static double calculateDamage(double attackerDamage, double defenderDefense){
+        return attackerDamage - attackerDamage*((defenderDefense*1.0)/20);
     }
 
     private static boolean checkHit(double speedR){

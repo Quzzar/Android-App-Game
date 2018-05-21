@@ -1,7 +1,7 @@
 package com.quzzar.game.Player;
 
-import com.quzzar.game.Inventory.Item;
-import com.quzzar.game.Inventory.Items.Nothing;
+import com.quzzar.game.Items.Item;
+import com.quzzar.game.Items.Items.Nothing;
 
 import java.io.Serializable;
 import java.util.ArrayList;

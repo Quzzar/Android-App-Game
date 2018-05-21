@@ -33,10 +33,10 @@ public class DataUtility {
         Gdx.files.local(getStatsDataFile()).delete();
     }
 
-    public static final String getInventoryDataFile(){
+    public static String getInventoryDataFile(){
         return "playerInv.dat";
     }
-    public static final String getStatsDataFile(){
+    public static String getStatsDataFile(){
         return "playerStats.dat";
     }
 

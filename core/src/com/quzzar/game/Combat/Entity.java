@@ -14,13 +14,13 @@ public class Entity {
     private String displayName;
     private Image image;
 
-    final private int maxHealth;
-    private int health;
+    final private double maxHealth;
+    private double health;
 
     final private int fadeOutCountMax = 100;
     private int fadeOutCount = fadeOutCountMax;
 
-    public Entity(EntityType entityType, String displayName, int health){
+    public Entity(EntityType entityType, String displayName, double health){
         this.entityType = entityType;
         this.displayName = displayName;
 
@@ -31,22 +31,22 @@ public class Entity {
 
     }
 
-    public int getMaxHealth(){
+    public double getMaxHealth(){
         return maxHealth;
     }
 
-    public int getHealth(){
+    public double getHealth(){
         return health;
     }
 
-    public void heal(int amount) {
+    public void heal(double amount) {
         health += amount;
         if(health>maxHealth){
             health = maxHealth;
         }
     }
 
-    public void hurt(int amount) {
+    public void hurt(double amount) {
         health -= amount;
     }
 

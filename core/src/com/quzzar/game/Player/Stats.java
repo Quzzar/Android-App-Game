@@ -1,31 +1,31 @@
 package com.quzzar.game.Player;
 
 import com.quzzar.game.GameMain;
-import com.quzzar.game.Inventory.Items.Groups.Armor;
-import com.quzzar.game.Inventory.Items.Groups.Helmet;
-import com.quzzar.game.Inventory.Items.Groups.Necklace;
-import com.quzzar.game.Inventory.Items.Groups.Ring;
-import com.quzzar.game.Inventory.Items.Groups.Weapon;
+import com.quzzar.game.Items.Items.Groups.Armor;
+import com.quzzar.game.Items.Items.Groups.Helmet;
+import com.quzzar.game.Items.Items.Groups.Necklace;
+import com.quzzar.game.Items.Items.Groups.Ring;
+import com.quzzar.game.Items.Items.Groups.Weapon;
 import com.quzzar.game.Screens.MenuScreen;
 
 import java.io.Serializable;
 
 public class Stats implements Serializable{
 
-    final private int damageBase;
-    final private int speedBase;
-    final private int defenseBase;
+    final private double damageBase;
+    final private double speedBase;
+    final private double defenseBase;
 
-    final private int maxHealth;
+    final private double maxHealth;
 
-    private int health;
-    private int damage;
-    private int speed;
-    private int defense;
+    private double health;
+    private double damage;
+    private double speed;
+    private double defense;
 
     private Inventory inventory;
 
-    public Stats(int maxHealth, int damageBase, int speedBase, int defenseBase){
+    public Stats(double maxHealth, double damageBase, double speedBase, double defenseBase){
 
         this.maxHealth = maxHealth;
 
@@ -87,34 +87,34 @@ public class Stats implements Serializable{
     }
 
 
-    public int getMaxHealth() {
+    public double getMaxHealth() {
         return maxHealth;
     }
 
-    public int getHealth() {
+    public double getHealth() {
         return health;
     }
 
-    public void heal(int amount) {
+    public void heal(double amount) {
         health += amount;
         if(health>maxHealth){
             health = maxHealth;
         }
     }
 
-    public void hurt(int amount) {
+    public void hurt(double amount) {
         health -= amount;
     }
 
-    public int getDamage() {
+    public double getDamage() {
         return damage;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public int getDefense() {
+    public double getDefense() {
         return defense;
     }
 

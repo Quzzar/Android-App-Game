@@ -1,18 +1,11 @@
 package com.quzzar.game.Player;
 
 import com.quzzar.game.DataHandling.DataUtility;
-import com.quzzar.game.GameMain;
-import com.quzzar.game.Inventory.Items.AmethystMedallion;
-import com.quzzar.game.Inventory.Items.Book;
-import com.quzzar.game.Inventory.Items.GoldAxe;
-import com.quzzar.game.Inventory.Items.Groups.Armor;
-import com.quzzar.game.Inventory.Items.Groups.Helmet;
-import com.quzzar.game.Inventory.Items.Groups.Necklace;
-import com.quzzar.game.Inventory.Items.Groups.Ring;
-import com.quzzar.game.Inventory.Items.Groups.Weapon;
-import com.quzzar.game.Inventory.Items.HealthPotion;
-import com.quzzar.game.Inventory.Items.HealthPotionLesser;
-import com.quzzar.game.Screens.MenuScreen;
+import com.quzzar.game.Items.Items.AmethystMedallion;
+import com.quzzar.game.Items.Items.Book;
+import com.quzzar.game.Items.Items.GoldAxe;
+import com.quzzar.game.Items.Items.HealthPotion;
+import com.quzzar.game.Items.Items.HealthPotionLesser;
 
 public class Player {
 
@@ -72,11 +65,11 @@ public class Player {
     }
 
 
-    public static void heal(int amount){
+    public static void heal(double amount){
         stats.heal(amount);
     }
 
-    public static void hurt(int amount){
+    public static void hurt(double amount){
         stats.hurt(amount);
     }
 

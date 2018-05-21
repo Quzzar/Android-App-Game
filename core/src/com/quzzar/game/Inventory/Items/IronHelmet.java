@@ -6,8 +6,8 @@ import com.quzzar.game.Inventory.Items.Groups.Armor;
 import com.quzzar.game.Inventory.Items.Groups.Helmet;
 
 public class IronHelmet extends Helmet {
-    public IronHelmet(int amount, int defenseMod) {
-        super(ItemType.IRON_HELMET, amount, "Iron Helmet", defenseMod);
+    public IronHelmet() {
+        super(ItemType.IRON_HELMET, "Iron Helmet", 2);
     }
 
     @Override

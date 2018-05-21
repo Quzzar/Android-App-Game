@@ -1,7 +1,6 @@
 package com.quzzar.game.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -15,7 +14,7 @@ import com.quzzar.game.Inventory.Display.InventoryDisplay;
 import com.quzzar.game.Inventory.Item;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Location;
-import com.quzzar.game.Objects.Player;
+import com.quzzar.game.Player.Player;
 import com.quzzar.game.Utility;
 
 public class EquipScreen implements Screen {
@@ -135,7 +134,7 @@ public class EquipScreen implements Screen {
 
     @Override
     public void pause() {
-
+        Utility.screenPause();
     }
 
     @Override
@@ -150,7 +149,7 @@ public class EquipScreen implements Screen {
 
     @Override
     public void dispose() {
-        Utility.screenDispose(batch);
+        Utility.screenExit(batch);
     }
 
 }

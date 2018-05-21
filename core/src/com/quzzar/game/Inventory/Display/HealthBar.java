@@ -27,21 +27,21 @@ public class HealthBar {
 
     }
 
-    private Texture getBarTexture(int maxHealth, int health){
+    private Texture getBarTexture(int health, int maxHealth){
 
         //Get health into 0.0 - 1.0
         double factor = 1.0/maxHealth;
         double newHealth = factor*health;
 
-        int frameNum = (int) Math.round((barTextures.size()-1)*newHealth);
+        int frameNum = (int) Math.floor((barTextures.size()-1)*newHealth);
         if(frameNum<0){
             frameNum = 0;
         }
         return barTextures.get(frameNum);
     }
 
-    public void draw(SpriteBatch batch, int maxHealth, int health){
-        Image image = new Image(getBarTexture(maxHealth, health),location,scale);
+    public void draw(SpriteBatch batch, int health, int maxHealth){
+        Image image = new Image(getBarTexture(health, maxHealth),location,scale);
         image.draw(batch);
     }
 

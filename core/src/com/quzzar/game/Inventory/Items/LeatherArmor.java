@@ -5,8 +5,8 @@ import com.quzzar.game.Inventory.ItemType;
 import com.quzzar.game.Inventory.Items.Groups.Armor;
 
 public class LeatherArmor extends Armor {
-    public LeatherArmor(int amount, int defenseMod) {
-        super(ItemType.LEATHER_ARMOR, amount, "Leather Armor", defenseMod);
+    public LeatherArmor() {
+        super(ItemType.LEATHER_ARMOR, "Leather Armor", 2);
     }
 
     @Override

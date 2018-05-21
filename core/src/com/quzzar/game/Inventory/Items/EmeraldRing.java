@@ -5,8 +5,8 @@ import com.quzzar.game.Inventory.ItemType;
 import com.quzzar.game.Inventory.Items.Groups.Ring;
 
 public class EmeraldRing extends Ring{
-    public EmeraldRing(int amount, int defenseMod, int speedMod) {
-        super(ItemType.EMERALD_RING, amount, "Emerald Ring", defenseMod, speedMod);
+    public EmeraldRing() {
+        super(ItemType.EMERALD_RING, "Emerald Ring", 0, 1);
     }
 
     @Override

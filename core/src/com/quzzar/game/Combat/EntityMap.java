@@ -1,17 +1,10 @@
 package com.quzzar.game.Combat;
 
-import com.quzzar.game.Combat.Entities.Groups.Monster;
-import com.quzzar.game.Combat.Entities.Monsters.Cultist;
-import com.quzzar.game.Combat.Entities.Monsters.Demon;
-import com.quzzar.game.Combat.Entities.Monsters.Furry;
-import com.quzzar.game.Combat.Entities.Monsters.Goblin;
-import com.quzzar.game.Combat.Entities.Monsters.Orc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class EntityHandler{
+public class EntityMap{
 
     private static List<MapInstance> entityMap = new ArrayList<MapInstance>();
 
@@ -49,14 +42,6 @@ public class EntityHandler{
 
     public static EntityType getEntityType(Entity entity){
         return entity.getEntityType();
-    }
-
-    ////////
-
-    private static List<Monster> monsters = Arrays.asList(new Goblin(), new Furry(), new Cultist(), new Demon(), new Goblin(), new Orc());
-
-    public static List<Monster> getMonsters(){
-        return monsters;
     }
 
 

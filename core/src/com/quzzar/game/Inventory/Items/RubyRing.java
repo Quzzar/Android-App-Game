@@ -5,8 +5,8 @@ import com.quzzar.game.Inventory.ItemType;
 import com.quzzar.game.Inventory.Items.Groups.Ring;
 
 public class RubyRing extends Ring{
-    public RubyRing(int amount, int defenseMod, int speedMod) {
-        super(ItemType.RUBY_RING, amount, "Ruby Ring", defenseMod, speedMod);
+    public RubyRing() {
+        super(ItemType.RUBY_RING, "Ruby Ring", 0, 1);
     }
 
     @Override

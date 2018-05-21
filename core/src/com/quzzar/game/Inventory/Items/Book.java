@@ -5,8 +5,8 @@ import com.quzzar.game.Inventory.ItemType;
 import com.quzzar.game.Inventory.Items.Groups.Quest;
 
 public class Book extends Quest {
-    public Book(int amount, String questTitle, String ownerName) {
-        super(ItemType.BOOK, amount, "Book", questTitle, ownerName);
+    public Book(String displayName, String questTitle, String ownerName) {
+        super(ItemType.BOOK, displayName, questTitle, ownerName);
     }
 
     @Override

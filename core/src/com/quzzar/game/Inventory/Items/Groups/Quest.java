@@ -9,8 +9,8 @@ public class Quest extends Item {
     private String questTitle;
     private String ownerName;
 
-    public Quest(ItemType itemType, int amount, String displayName, String questTitle, String ownerName) {
-        super(itemType, amount, displayName);
+    public Quest(ItemType itemType, String displayName, String questTitle, String ownerName) {
+        super(itemType, displayName);
 
         this.questTitle = questTitle;
         this.ownerName = ownerName;

@@ -3,11 +3,12 @@ package com.quzzar.game.Inventory.Display;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.Fonts.FontType;
-import com.quzzar.game.Inventory.Inventory;
+import com.quzzar.game.Player.Inventory;
 import com.quzzar.game.Objects.Font;
 import com.quzzar.game.Objects.Image;
 import com.quzzar.game.Objects.Location;
-import com.quzzar.game.Objects.Player;
+import com.quzzar.game.Player.Player;
+import com.quzzar.game.Player.Stats;
 import com.quzzar.game.Utility;
 
 public class EquipmentDisplay {
@@ -24,7 +25,16 @@ public class EquipmentDisplay {
 
     private Font statsFont;
 
+    private HealthBar healthBar;
+
+    private Stats stats;
+
     public EquipmentDisplay(){
+
+        stats = Player.getStats();
+
+        healthBar = new HealthBar(new Location(0.56,0.9),0.22);
+
 
         firstHandImage = new Image(new Texture("game/inventory/equipment/sword_left_icon.png"),
                 new Location(0.1, 0.5),0.15, Utility.adjustedHeightScale(0.15,0.15));
@@ -91,9 +101,11 @@ public class EquipmentDisplay {
         firstRingImage.draw(batch);
         secondRingImage.draw(batch);
 
-        statsFont.writeText(batch,"Damage: "+ Player.getDamage(), new Location(0.05,0.1));
-        statsFont.writeText(batch,"Speed: "+Player.getSpeed(), new Location(0.25,0.1));
-        statsFont.writeText(batch,"Defense: "+Player.getDefense(), new Location(0.45,0.1));
+        statsFont.writeText(batch,"Damage: "+ stats.getDamage(), new Location(0.05,0.1));
+        statsFont.writeText(batch,"Speed: "+stats.getSpeed(), new Location(0.25,0.1));
+        statsFont.writeText(batch,"Defense: "+stats.getDefense(), new Location(0.45,0.1));
+
+        healthBar.draw(batch,stats.getHealth(),stats.getMaxHealth());
 
     }
 
@@ -123,13 +135,7 @@ public class EquipmentDisplay {
 
     public void draw(SpriteBatch batch){
 
-        firstHandImage.draw(batch);
-        secondHandImage.draw(batch);
-        armorImage.draw(batch);
-        helmetImage.draw(batch);
-        necklaceImage.draw(batch);
-        firstRingImage.draw(batch);
-        secondRingImage.draw(batch);
+        drawBackgroundOnly(batch);
 
         createItemImages();
 
@@ -140,10 +146,6 @@ public class EquipmentDisplay {
         inventory.getNecklace().getImage().draw(batch);
         inventory.getFirstRing().getImage().draw(batch);
         inventory.getSecondRing().getImage().draw(batch);
-
-        statsFont.writeText(batch,"Damage: "+ Player.getDamage(), new Location(0.05,0.1));
-        statsFont.writeText(batch,"Speed: "+Player.getSpeed(), new Location(0.25,0.1));
-        statsFont.writeText(batch,"Defense: "+Player.getDefense(), new Location(0.45,0.1));
 
     }
 

@@ -6,31 +6,23 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.quzzar.game.Combat.CombatHandler;
 import com.quzzar.game.Combat.Entities.Groups.Monster;
 import com.quzzar.game.Combat.Entity;
 import com.quzzar.game.Fonts.FontType;
 import com.quzzar.game.GameMain;
+import com.quzzar.game.Generation.ItemCreation;
 import com.quzzar.game.Input;
+import com.quzzar.game.Inventory.Display.Announcement;
 import com.quzzar.game.Inventory.Display.Background;
 import com.quzzar.game.Inventory.Display.HealthBar;
 import com.quzzar.game.Inventory.Item;
-import com.quzzar.game.Inventory.ItemGroup;
-import com.quzzar.game.Inventory.Items.Groups.Armor;
-import com.quzzar.game.Inventory.Items.Groups.Consumable;
-import com.quzzar.game.Inventory.Items.Groups.Helmet;
-import com.quzzar.game.Inventory.Items.Groups.Necklace;
-import com.quzzar.game.Inventory.Items.Groups.Quest;
-import com.quzzar.game.Inventory.Items.Groups.Ring;
-import com.quzzar.game.Inventory.Items.Groups.Weapon;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Font;
 import com.quzzar.game.Objects.Image;
 import com.quzzar.game.Objects.Location;
-import com.quzzar.game.Objects.Player;
+import com.quzzar.game.Player.Player;
 import com.quzzar.game.Utility;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CombatScreen implements Screen {
 
@@ -44,8 +36,7 @@ public class CombatScreen implements Screen {
 
     private Button hitBtn;
     private Button runBtn;
-
-    private Button symbolBtn;
+    private Button invBtn;
 
     private Font nameFont;
 
@@ -56,6 +47,8 @@ public class CombatScreen implements Screen {
     private HealthBar charHealthBar;
     private HealthBar enemyHealthBar;
 
+    private Announcement rewardAnnouncement;
+
 
     public CombatScreen(final GameMain game, final Screen gameScreen, final Entity enemy) {
 
@@ -65,6 +58,8 @@ public class CombatScreen implements Screen {
 
         this.batch = new SpriteBatch();
 
+        rewardAnnouncement = new Announcement(100);
+
         charHealthBar = new HealthBar(new Location(0.1,0.9), 0.2);
         enemyHealthBar = new HealthBar(new Location(0.9,0.9), 0.2);
 
@@ -72,15 +67,15 @@ public class CombatScreen implements Screen {
 
         background = new Background(new Texture("game/combat/combatBck.png"));
 
-        this.character = new Image(new Texture("game/combat/character.png"), new Location(0.2,0.4),0.6);
+        this.invBtn = new Button(new Texture("game/invIcon.png"),new Texture("game/invIcon.png"),
+                new Location(0.06),0.1);
+
+        this.character = new Image(new Texture("game/combat/character.png"), new Location(0.2,0.3),0.6);
 
         this.hitBtn = new Button(new Texture("game/combat/hitBtn.png"),new Texture("game/combat/hitBtn.png"),
-                new Location(0.7,0.1),0.2);
+                new Location(0.5,0.1),0.1);
         this.runBtn = new Button(new Texture("game/combat/runBtn.png"),new Texture("game/combat/runBtn.png"),
-                new Location(0.85,0.1),0.2);
-
-        this.symbolBtn = new Button(new Texture("game/symbol.png"),new Texture("game/symbol.png"),
-                new Location(0.1,0.1),0.1);
+                new Location(0.6,0.1),0.1);
 
         enemy.createImage(new Location(0.8,0.45));
 
@@ -94,23 +89,24 @@ public class CombatScreen implements Screen {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Input.begin();
 
-                if (hitBtn.containsLocation(Input.getTouchedLocation())){
-                    Utility.print("HIT","Player Hit for "+ Player.getDamage());
-                    enemy.hurt(Player.getDamage());
-                    if(enemy instanceof Monster){
-                        Monster enemyMonster = (Monster) enemy;
-                        Utility.print("HIT",enemy.getDisplayName()+" Hit for "+ enemyMonster.getDamage());
-                        Player.hurt(enemyMonster.getDamage());
+                if(!enemy.isDead()){
+
+                    if (hitBtn.containsLocation(Input.getTouchedLocation())){
+                        if(enemy instanceof Monster){
+                            Monster enemyMonster = (Monster) enemy;
+                            CombatHandler.doCombat(enemyMonster);
+                        }
                     }
-                }
 
-                if (runBtn.containsLocation(Input.getTouchedLocation())){
-                    combatScreen.dispose();
-                    game.setScreen(gameScreen);
-                }
+                    if (runBtn.containsLocation(Input.getTouchedLocation())){
+                        combatScreen.dispose();
+                        game.setScreen(gameScreen);
+                    }
 
-                if (symbolBtn.containsLocation(Input.getTouchedLocation())){
-                    game.setScreen(new InventoryScreen(game, combatScreen));
+                    if (invBtn.containsLocation(Input.getTouchedLocation())){
+                        game.setScreen(new InventoryScreen(game, combatScreen));
+                    }
+
                 }
 
                 Input.end();
@@ -125,12 +121,6 @@ public class CombatScreen implements Screen {
 
         Player.update();
 
-        if(enemy.getHealth()<=0){
-            Utility.print("HIT","You defeated the "+enemy.getDisplayName()+"!");
-            combatScreen.dispose();
-            game.setScreen(gameScreen);
-        }
-
         Gdx.gl.glClearColor(18, 69, 91, 0.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -139,17 +129,40 @@ public class CombatScreen implements Screen {
         background.draw(batch);
 
         character.draw(batch);
-        enemy.draw(batch);
 
-        nameFont.writeText(batch,enemy.getDisplayName(),new Location(0.7,0.95));
+        if(enemy.isDead()){
 
-        hitBtn.draw(batch);
-        runBtn.draw(batch);
+            boolean complete = enemy.drawFadeOut(batch);
 
-        symbolBtn.draw(batch);
+            if(complete){
 
-        charHealthBar.draw(batch, Player.getMaxHealth(), Player.getHealth());
-        enemyHealthBar.draw(batch, enemy.getMaxHealth(), enemy.getHealth());
+                if(rewardAnnouncement.isReady()){
+                    Item rewardItem = ItemCreation.createCommonItem();
+                    Player.getInventory().addItem(rewardItem);
+                    rewardAnnouncement.setText(rewardItem.getDisplayName()+" Acquired");
+                } else if(rewardAnnouncement.isFinished()){
+                    combatScreen.dispose();
+                    game.setScreen(gameScreen);
+                }
+
+                rewardAnnouncement.run(batch);
+            }
+
+        } else {
+            enemy.draw(batch);
+        }
+
+        nameFont.writeText(batch,enemy.getDisplayName(),new Location(0.65,0.95));
+
+        if(!enemy.isDead()){
+            hitBtn.draw(batch);
+            runBtn.draw(batch);
+        }
+
+        invBtn.draw(batch);
+
+        charHealthBar.draw(batch, Player.getStats().getHealth(), Player.getStats().getMaxHealth());
+        enemyHealthBar.draw(batch, enemy.getHealth(), enemy.getMaxHealth());
 
         batch.end();
 
@@ -162,7 +175,7 @@ public class CombatScreen implements Screen {
 
     @Override
     public void pause() {
-
+        Utility.screenPause();
     }
 
     @Override
@@ -177,7 +190,7 @@ public class CombatScreen implements Screen {
 
     @Override
     public void dispose() {
-        Utility.screenDispose(batch);
+        Utility.screenExit(batch);
     }
 }
 

@@ -7,13 +7,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.quzzar.game.Combat.Entities.Groups.Monster;
-import com.quzzar.game.Combat.EntityHandler;
+import com.quzzar.game.Combat.EntityMap;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
 import com.quzzar.game.Inventory.Display.Background;
+import com.quzzar.game.Inventory.Display.HealthBar;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Location;
-import com.quzzar.game.Objects.Player;
+import com.quzzar.game.Player.Player;
 import com.quzzar.game.Utility;
 
 public class GameScreen implements Screen {
@@ -24,9 +25,11 @@ public class GameScreen implements Screen {
     private SpriteBatch batch;
 
     private Button combatBtn;
-    private Button symbolBtn;
+    private Button invBtn;
 
     private Background background;
+
+    private HealthBar charHealthBar;
 
     public GameScreen(final GameMain game){
 
@@ -36,10 +39,12 @@ public class GameScreen implements Screen {
 
         background = new Background(new Texture("misc/dirt_1.jpg"));
 
+        charHealthBar = new HealthBar(new Location(0.1,0.9), 0.2);
+
         combatBtn = new Button(new Texture("game/combatBtn.png"),new Texture("game/combatBtn.png"),
-                new Location(0.7,0.5),0.2, 0.2);
-        symbolBtn = new Button(new Texture("game/symbol.png"),new Texture("game/symbol.png"),
-                new Location(0.1,0.1),0.1);
+                new Location(0.7,0.5),0.2);
+        this.invBtn = new Button(new Texture("game/invIcon.png"),new Texture("game/invIcon.png"),
+                new Location(0.06),0.1);
 
 
     }
@@ -54,11 +59,11 @@ public class GameScreen implements Screen {
                 Input.begin();
 
                 if (combatBtn.containsLocation(Input.getTouchedLocation())){
-                    Utility.print("GEE",""+ EntityHandler.mapSize());
+                    Utility.print("GEE",""+ EntityMap.mapSize());
                     game.setScreen(new CombatScreen(game, gameScreen, Monster.RANDOM()));
                 }
 
-                if (symbolBtn.containsLocation(Input.getTouchedLocation())){
+                if (invBtn.containsLocation(Input.getTouchedLocation())){
                     game.setScreen(new InventoryScreen(game, gameScreen));
                 }
 
@@ -83,7 +88,9 @@ public class GameScreen implements Screen {
 
 
         combatBtn.draw(batch);
-        symbolBtn.draw(batch);
+        invBtn.draw(batch);
+
+        charHealthBar.draw(batch, Player.getStats().getHealth(), Player.getStats().getMaxHealth());
 
         batch.end();
 
@@ -96,7 +103,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void pause() {
-
+        Utility.screenPause();
     }
 
     @Override
@@ -111,6 +118,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        Utility.screenDispose(batch);
+        Utility.screenExit(batch);
     }
 }

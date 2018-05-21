@@ -4,10 +4,10 @@ import com.quzzar.game.Inventory.ItemGroup;
 import com.quzzar.game.Inventory.ItemType;
 import com.quzzar.game.Inventory.Items.Groups.Consumable;
 
-public class HealthPotion extends Consumable{
+public class HealthPotionLesser extends Consumable{
 
-    public HealthPotion() {
-        super(ItemType.HEALTH_POTION, "Health Potion", 0, 0, 0, 0, 5);
+    public HealthPotionLesser() {
+        super(ItemType.HEALTH_POTION, "Lesser Health Potion", 0, 0, 0, 0, 3);
     }
 
     @Override

@@ -82,7 +82,7 @@ public class SettingsScreen implements Screen {
 
     @Override
     public void pause() {
-
+        Utility.screenPause();
     }
 
     @Override
@@ -97,7 +97,7 @@ public class SettingsScreen implements Screen {
 
     @Override
     public void dispose() {
-        Utility.screenDispose(batch);
+        Utility.screenExit(batch);
     }
 }
 

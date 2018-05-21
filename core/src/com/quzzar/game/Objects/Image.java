@@ -3,13 +3,13 @@ package com.quzzar.game.Objects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.quzzar.game.GameMain;
-import com.quzzar.game.Input;
 import com.quzzar.game.Utility;
 
-public class Image {
+import java.io.Serializable;
 
-    private Texture texture;
+public class Image implements Serializable{
+
+    private transient Texture texture;
     private Location location;
     private double width;
     private double height;
@@ -25,7 +25,7 @@ public class Image {
         this.texture = texture;
         this.location = location;
         this.width = scale;
-        this.height = texture.getHeight()*(scale/texture.getWidth());
+        this.height = Utility.adjustedHeightScale(scale,texture.getHeight()*(scale/texture.getWidth()));
     }
 
     public Texture getTexture() {

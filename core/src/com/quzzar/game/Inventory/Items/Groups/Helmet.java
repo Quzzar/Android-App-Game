@@ -8,8 +8,8 @@ public class Helmet extends Item {
 
     private int defenseMod;
 
-    public Helmet(ItemType itemType, int amount, String displayName, int defenseMod) {
-        super(itemType, amount, displayName);
+    public Helmet(ItemType itemType, String displayName, int defenseMod) {
+        super(itemType, displayName);
 
         this.defenseMod = defenseMod;
     }

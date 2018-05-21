@@ -6,8 +6,8 @@ import com.quzzar.game.Inventory.Items.Groups.Armor;
 import com.quzzar.game.Inventory.Items.Groups.Helmet;
 
 public class BoneHelmet extends Helmet {
-    public BoneHelmet(int amount, int defenseMod) {
-        super(ItemType.BONE_HELMET, amount, "Bone Helmet", defenseMod);
+    public BoneHelmet() {
+        super(ItemType.BONE_HELMET, "Bone Helmet", 1);
     }
 
     @Override

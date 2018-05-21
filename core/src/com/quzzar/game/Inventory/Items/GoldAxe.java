@@ -5,8 +5,8 @@ import com.quzzar.game.Inventory.Items.Groups.Weapon;
 
 public class GoldAxe extends Weapon {
 
-    public GoldAxe(int amount, int damageMod, int speedMod) {
-        super(ItemType.GOLD_AXE, amount, "Gold Axe", damageMod, speedMod);
+    public GoldAxe() {
+        super(ItemType.GOLD_AXE, "Gold Axe", 2, -2);
     }
 
     @Override

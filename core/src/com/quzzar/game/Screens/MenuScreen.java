@@ -6,6 +6,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.quzzar.game.DataHandling.DataUtility;
+import com.quzzar.game.DataHandling.LoadData;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
 import com.quzzar.game.Inventory.Display.Background;
@@ -20,12 +22,11 @@ public class MenuScreen implements Screen{
     private SpriteBatch batch;
 
     private final Button playBtn;
-    private final Button exitBtn;
     private final Button settingsBtn;
 
     private final Image logoImg;
 
-    private Background mainBack;
+    private Background mainBackground;
 
     public MenuScreen(final GameMain game){
 
@@ -37,20 +38,21 @@ public class MenuScreen implements Screen{
                 new Location(0.5, 0.85),
                 0.25,0.25);
 
-
-        playBtn = new Button(new Texture("menu/play.png"), new Texture("menu/play_pressed.png"),
-                new Location(0.5, 0.6),
-                0.2, 0.2);
+        if(DataUtility.hasSave()){
+            playBtn = new Button(new Texture("menu/continue.png"), new Texture("menu/continue.png"),
+                    new Location(0.5, 0.6),
+                    0.2, 0.2);
+        } else {
+            playBtn = new Button(new Texture("menu/begin.png"), new Texture("menu/begin.png"),
+                    new Location(0.5, 0.6),
+                    0.2, 0.2);
+        }
 
         settingsBtn = new Button(new Texture("menu/settings.png"), new Texture("menu/settings_pressed.png"),
                 new Location(0.5, 0.4),
                 0.15, 0.15);
 
-        exitBtn = new Button(new Texture("menu/exit.png"), new Texture("menu/exit_pressed.png"),
-                new Location(0.5, 0.2),
-                0.2, 0.2);
-
-        mainBack = new Background(new Texture("menu/menuBack.png"));
+        mainBackground = new Background(new Texture("menu/menuBack.png"));
 
     }
 
@@ -66,7 +68,7 @@ public class MenuScreen implements Screen{
                 if (playBtn.containsLocation(Input.getTouchedLocation())){
                     menuScreen.dispose();
 
-                    Player.create();
+                    LoadData.load();
 
                     game.setScreen(new GameScreen(game));
                 }
@@ -74,12 +76,6 @@ public class MenuScreen implements Screen{
                 //Settings game button
                 if (settingsBtn.containsLocation(Input.getTouchedLocation())){
                     game.setScreen(new SettingsScreen(game, menuScreen));
-                }
-
-                //Exit button
-                if (exitBtn.containsLocation(Input.getTouchedLocation())) {
-                    menuScreen.dispose();
-                    Gdx.app.exit();
                 }
 
                 Input.end();
@@ -96,25 +92,11 @@ public class MenuScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
 
-        mainBack.draw(batch);
+        mainBackground.draw(batch);
 
-        if(playBtn.containsLocation(Input.getTouchedLocation())){
-            playBtn.drawPressed(batch);
-        } else {
-            playBtn.drawIdle(batch);
-        }
+        playBtn.draw(batch);
 
-        if(settingsBtn.containsLocation(Input.getTouchedLocation())){
-            settingsBtn.drawPressed(batch);
-        } else {
-            settingsBtn.drawIdle(batch);
-        }
-
-        if(exitBtn.containsLocation(Input.getTouchedLocation())){
-            exitBtn.drawPressed(batch);
-        } else {
-            exitBtn.drawIdle(batch);
-        }
+        settingsBtn.draw(batch);
 
         logoImg.draw(batch);
 
@@ -144,7 +126,10 @@ public class MenuScreen implements Screen{
 
     @Override
     public void dispose() {
-        Utility.screenDispose(batch);
+        /* Don't save player inventory here, as it's null */
+        Input.end();
+        batch.dispose();
+        Gdx.input.setInputProcessor(null);
     }
 
 

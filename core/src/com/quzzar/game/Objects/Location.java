@@ -1,6 +1,10 @@
 package com.quzzar.game.Objects;
 
-public class Location {
+import com.quzzar.game.Utility;
+
+import java.io.Serializable;
+
+public class Location implements Serializable{
 
     private double x;
     private double y;
@@ -10,6 +14,11 @@ public class Location {
         this.y = yScale;
     }
 
+    public Location(double xyScale) {
+        this.x = xyScale;
+        this.y = Utility.adjustedHeightScale(xyScale,xyScale);
+    }
+
     public double getX() {
         return x;
     }
@@ -17,4 +26,5 @@ public class Location {
     public double getY() {
         return y;
     }
+
 }

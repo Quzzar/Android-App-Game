@@ -24,6 +24,10 @@ public class Font {
         font.draw(batch,text,Input.xScaleToX(location.getX()),Input.yScaleToY(location.getY()));
     }
 
+    public void setColor(float red, float green, float blue, float alpha){
+        font.setColor(red, green, blue, alpha);
+    }
+
     public void dispose(){
         font.dispose();
     }

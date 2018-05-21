@@ -2,11 +2,12 @@ package com.quzzar.game.Inventory.Items;
 
 import com.quzzar.game.Inventory.ItemGroup;
 import com.quzzar.game.Inventory.ItemType;
-import com.quzzar.game.Inventory.Items.Groups.Necklace;
+import com.quzzar.game.Inventory.Items.Groups.Quest;
+import com.quzzar.game.Inventory.Items.Groups.Weapon;
 
-public class AmethystMedallion extends Necklace {
-    public AmethystMedallion() {
-        super(ItemType.AMETHYST_MEDALLION, "Amethyst Medallion", 0, 2);
+public class MagicBook extends Weapon {
+    public MagicBook() {
+        super(ItemType.BOOK, "Magic Book", 1, 7);
     }
 
     @Override
@@ -15,8 +16,8 @@ public class AmethystMedallion extends Necklace {
     }
 
     @Override
-    public int getDefenseMod() {
-        return super.getDefenseMod();
+    public int getDamageMod() {
+        return super.getDamageMod();
     }
 
     @Override

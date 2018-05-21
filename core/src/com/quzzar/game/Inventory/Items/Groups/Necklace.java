@@ -9,8 +9,8 @@ public class Necklace extends Item {
     private int defenseMod;
     private int speedMod;
 
-    public Necklace(ItemType itemType, int amount, String displayName, int defenseMod, int speedMod) {
-        super(itemType, amount, displayName);
+    public Necklace(ItemType itemType, String displayName, int defenseMod, int speedMod) {
+        super(itemType, displayName);
 
         this.defenseMod = defenseMod;
         this.speedMod = speedMod;

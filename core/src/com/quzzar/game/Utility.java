@@ -2,10 +2,7 @@ package com.quzzar.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.quzzar.game.Inventory.Item;
-import com.quzzar.game.Inventory.ItemType;
-import com.quzzar.game.Objects.Image;
-import com.quzzar.game.Objects.Player;
+import com.quzzar.game.DataHandling.SaveData;
 
 public class Utility {
 
@@ -13,10 +10,15 @@ public class Utility {
         Gdx.app.log(tag, message);
     }
 
-    public static void screenDispose(SpriteBatch batch){
+    public static void screenExit(SpriteBatch batch){
         Input.end();
         batch.dispose();
         Gdx.input.setInputProcessor(null);
+        SaveData.save();
+    }
+
+    public static void screenPause(){
+        SaveData.save();
     }
 
     public static int getScreenWidth(){
@@ -36,5 +38,7 @@ public class Utility {
         */
         return heightScale*(getScreenWidth()*widthScale)/(getScreenHeight()*heightScale);
     }
+
+
 
 }

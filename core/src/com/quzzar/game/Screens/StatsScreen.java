@@ -55,7 +55,7 @@ public class StatsScreen implements Screen {
 
     @Override
     public void pause() {
-
+        Utility.screenPause();
     }
 
     @Override
@@ -70,7 +70,7 @@ public class StatsScreen implements Screen {
 
     @Override
     public void dispose() {
-        Utility.screenDispose(batch);
+        Utility.screenExit(batch);
     }
 }
 

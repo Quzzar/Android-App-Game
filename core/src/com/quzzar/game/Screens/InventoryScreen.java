@@ -12,7 +12,7 @@ import com.quzzar.game.Inventory.Display.EquipmentDisplay;
 import com.quzzar.game.Inventory.Display.SideMenu;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Location;
-import com.quzzar.game.Objects.Player;
+import com.quzzar.game.Player.Player;
 import com.quzzar.game.Utility;
 
 public class InventoryScreen implements Screen {
@@ -50,16 +50,16 @@ public class InventoryScreen implements Screen {
         this.equipmentDisplay = new EquipmentDisplay();
 
         mapBtn = new Button(new Texture("game/inventory/mapButton.png"),new Texture("game/inventory/mapButton.png"),
-                new Location(0.9,0.45),0.1,0.1);
+                new Location(0.9,0.43),0.1,0.1);
 
-        equipBtn = new Button(new Texture("game/inventory/equipBtn.png"),new Texture("game/inventory/equipBtn.png"),
-                new Location(0.9,0.6),0.1,0.1);
+        equipBtn = new Button(new Texture("game/inventory/equipIcon.png"),new Texture("game/inventory/equipIcon.png"),
+                new Location(0.9,0.6),0.1);
 
         settingsBtn = new Button(new Texture("game/inventory/settingsBtn.png"),new Texture("game/inventory/settingsBtn.png"),
-                new Location(0.9,0.75),0.1,0.1);
+                new Location(0.77,0.1),0.1,0.1);
 
         exitToMainBtn = new Button(new Texture("game/inventory/exitBtn.png"),new Texture("game/inventory/exitBtn.png"),
-                new Location(0.9,0.9),0.1,0.1);
+                new Location(0.9,0.1),0.1,0.1);
 
         this.backBtn = new Button(new Texture("menu/settings/toMain.png"),new Texture("menu/settings/toMain.png"),
                 new Location(0.1,0.9),0.1,Utility.adjustedHeightScale(0.1,0.1));
@@ -136,7 +136,7 @@ public class InventoryScreen implements Screen {
 
     @Override
     public void pause() {
-
+        Utility.screenPause();
     }
 
     @Override
@@ -151,6 +151,6 @@ public class InventoryScreen implements Screen {
 
     @Override
     public void dispose() {
-        Utility.screenDispose(batch);
+        Utility.screenExit(batch);
     }
 }

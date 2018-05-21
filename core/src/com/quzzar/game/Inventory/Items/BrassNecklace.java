@@ -5,8 +5,8 @@ import com.quzzar.game.Inventory.ItemType;
 import com.quzzar.game.Inventory.Items.Groups.Necklace;
 
 public class BrassNecklace extends Necklace {
-    public BrassNecklace(int amount, int defenseMod, int speedMod) {
-        super(ItemType.BRASS_NECKLACE, amount, "Brass Necklace", defenseMod, speedMod);
+    public BrassNecklace() {
+        super(ItemType.BRASS_NECKLACE, "Brass Necklace", 1, 1);
     }
 
     @Override

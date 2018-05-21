@@ -1,8 +1,8 @@
 package com.quzzar.game.Combat.Entities.Groups;
 
 import com.quzzar.game.Combat.Entity;
-import com.quzzar.game.Combat.EntityHandler;
 import com.quzzar.game.Combat.EntityType;
+import com.quzzar.game.Generation.EnemyCreation;
 
 import java.util.Random;
 
@@ -35,8 +35,7 @@ public class Monster extends Entity {
 
 
     public static Entity RANDOM(){
-        Monster randMonster = EntityHandler.getMonsters().get((new Random()).nextInt(EntityHandler.getMonsters().size()));
-        return randMonster;
+        return EnemyCreation.createWeakEnemy();
     }
 
 

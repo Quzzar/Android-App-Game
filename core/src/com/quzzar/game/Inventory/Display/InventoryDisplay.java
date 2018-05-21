@@ -1,27 +1,16 @@
 package com.quzzar.game.Inventory.Display;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.input.GestureDetector;
-import com.badlogic.gdx.math.Vector2;
 import com.quzzar.game.Input;
-import com.quzzar.game.Inventory.Inventory;
+import com.quzzar.game.Player.Inventory;
 import com.quzzar.game.Inventory.Item;
 import com.quzzar.game.Inventory.ItemGroup;
-import com.quzzar.game.Inventory.ItemType;
-import com.quzzar.game.Inventory.Items.Groups.Armor;
-import com.quzzar.game.Inventory.Items.Groups.Weapon;
 import com.quzzar.game.Inventory.Items.Nothing;
-import com.quzzar.game.Objects.Image;
 import com.quzzar.game.Objects.Location;
-import com.quzzar.game.Objects.Player;
-import com.quzzar.game.Screens.InventoryScreen;
+import com.quzzar.game.Player.Player;
 import com.quzzar.game.Utility;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class InventoryDisplay {
 

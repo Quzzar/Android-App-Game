@@ -1,17 +1,16 @@
 package com.quzzar.game.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Vector2;
 import com.quzzar.game.Fonts.FontType;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
 import com.quzzar.game.Inventory.Display.Background;
-import com.quzzar.game.Inventory.Display.SideMenu;
 import com.quzzar.game.Inventory.Item;
 import com.quzzar.game.Inventory.ItemGroup;
 import com.quzzar.game.Inventory.Items.Groups.Armor;
@@ -23,9 +22,8 @@ import com.quzzar.game.Inventory.Items.Groups.Ring;
 import com.quzzar.game.Inventory.Items.Groups.Weapon;
 import com.quzzar.game.Objects.Button;
 import com.quzzar.game.Objects.Font;
-import com.quzzar.game.Objects.Image;
 import com.quzzar.game.Objects.Location;
-import com.quzzar.game.Objects.Player;
+import com.quzzar.game.Player.Player;
 import com.quzzar.game.Utility;
 
 public class ItemInfoScreen implements Screen {
@@ -44,6 +42,9 @@ public class ItemInfoScreen implements Screen {
     private Item item;
 
     private Background background;
+
+    private Button consumeBtn;
+    private Button destroyBtn;
 
     public ItemInfoScreen(final GameMain game, final Screen returningScreen, final Item item) {
 
@@ -64,25 +65,90 @@ public class ItemInfoScreen implements Screen {
                 new Location(0.9,0.9),0.1,Utility.adjustedHeightScale(0.1,0.1));
 
 
+        this.consumeBtn = new Button(new Texture("game/inventory/info/consumeBtn.png"),new Texture("game/inventory/info/consumeBtn.png"),
+                new Location(0.7,0.1),0.15,0.15);
+        this.destroyBtn = new Button(new Texture("game/inventory/info/destroyBtn.png"),new Texture("game/inventory/info/destroyBtn.png"),
+                new Location(0.9,0.1),0.15,0.15);
+
+
     }
 
     @Override
     public void show() {
 
-        Gdx.input.setInputProcessor(new InputAdapter() {
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                Input.begin();
+        Gdx.input.setInputProcessor(new GestureDetector(20, 0.4f, 0.4f, 0.15f,
+                new GestureDetector.GestureListener() {
+                    @Override
+                    public boolean touchDown(float x, float y, int pointer, int button) {
+                        Input.begin();
 
-                if (exitInfoBtn.containsLocation(Input.getTouchedLocation())){
-                    itemInfoScreen.dispose();
-                    game.setScreen(new EquipScreen(game, returningScreen));
-                }
+                        if (exitInfoBtn.containsLocation(Input.getTouchedLocation())){
+                            itemInfoScreen.dispose();
+                            game.setScreen(new EquipScreen(game, returningScreen));
+                        }
 
-                Input.end();
-                return super.touchUp(screenX, screenY, pointer, button);
-            }
-        });
+                        // Consume button pressed
+                        if(item.getItemGroup().equals(ItemGroup.CONSUMABLE)){
+
+                            if (consumeBtn.containsLocation(Input.getTouchedLocation())){
+
+                                Player.heal(((Consumable)item).getHealthIncrease());
+                                Player.getInventory().removeItem(item);
+
+                                itemInfoScreen.dispose();
+                                game.setScreen(new EquipScreen(game, returningScreen));
+                            }
+
+                        }
+
+                        Input.end();
+                        return false;
+                    }
+                    @Override
+                    public boolean tap(float x, float y, int count, int button) {
+                        return false;
+                    }
+                    @Override
+                    public boolean longPress(float x, float y) {
+                        Input.begin();
+
+                        // Destroy button long press
+                        if (destroyBtn.containsLocation(Input.getTouchedLocation())){
+
+                            Player.getInventory().removeItem(item);
+
+                            itemInfoScreen.dispose();
+                            game.setScreen(new EquipScreen(game, returningScreen));
+                        }
+
+                        Input.end();
+                        return false;
+                    }
+                    @Override
+                    public boolean fling(float velocityX, float velocityY, int button) {
+                        return false;
+                    }
+                    @Override
+                    public boolean pan(float x, float y, float deltaX, float deltaY) {
+                        return false;
+                    }
+                    @Override
+                    public boolean panStop(float x, float y, int pointer, int button) {
+                        return false;
+                    }
+                    @Override
+                    public boolean zoom(float initialDistance, float distance) {
+                        return false;
+                    }
+                    @Override
+                    public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+                        return false;
+                    }
+                    @Override
+                    public void pinchStop() {
+
+                    }
+                }));
 
     }
 
@@ -133,6 +199,15 @@ public class ItemInfoScreen implements Screen {
             textFont.writeText(batch,"Quest Title: "+itemQuest.getQuestTitle(),new Location(xVal,yVal-increment*1));
         }
 
+
+        // Add consume button
+        if(item.getItemGroup().equals(ItemGroup.CONSUMABLE)){
+            consumeBtn.draw(batch);
+        }
+
+        destroyBtn.draw(batch);
+
+
         exitInfoBtn.draw(batch);
         item.getImage().draw(batch);
         batch.end();
@@ -146,7 +221,7 @@ public class ItemInfoScreen implements Screen {
 
     @Override
     public void pause() {
-
+        Utility.screenPause();
     }
 
     @Override
@@ -161,7 +236,7 @@ public class ItemInfoScreen implements Screen {
 
     @Override
     public void dispose() {
-        Utility.screenDispose(batch);
+        Utility.screenExit(batch);
     }
 }
 

@@ -8,8 +8,8 @@ public class Armor extends Item {
 
     private int defenseMod;
 
-    public Armor(ItemType itemType, int amount, String displayName, int defenseMod) {
-        super(itemType, amount, displayName);
+    public Armor(ItemType itemType, String displayName, int defenseMod) {
+        super(itemType, displayName);
 
         this.defenseMod = defenseMod;
     }
@@ -22,4 +22,7 @@ public class Armor extends Item {
     public int getDefenseMod() {
         return defenseMod;
     }
+
+
+
 }

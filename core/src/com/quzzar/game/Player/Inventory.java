@@ -1,11 +1,13 @@
-package com.quzzar.game.Inventory;
+package com.quzzar.game.Player;
 
+import com.quzzar.game.Inventory.Item;
 import com.quzzar.game.Inventory.Items.Nothing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inventory {
+public class Inventory implements Serializable{
 
     private ArrayList<Item> fullContents;
 

@@ -3,17 +3,17 @@ package com.quzzar.game.Inventory;
 import com.quzzar.game.Objects.Image;
 import com.quzzar.game.Objects.Location;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable{
 
     private ItemType itemType;
-    private int amount;
     private String displayName;
     private Image image;
 
-    public Item(ItemType itemType, int amount, String displayName){
+    public Item(ItemType itemType, String displayName){
 
         this.itemType = itemType;
-        this.amount = amount;
         this.displayName = displayName;
 
     }
@@ -24,10 +24,6 @@ public class Item {
 
     public ItemType getItemType() {
         return itemType;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 
     public Image getImage(){
@@ -48,7 +44,7 @@ public class Item {
 
     public Item clone(){
         // WARNING: THIS FUNCTION MIGHT NOT PRODUCE A PERFECT CLONE
-        Item newItem = new Item(itemType, amount, displayName);
+        Item newItem = new Item(itemType, displayName);
         if(getImage()!=null){
             newItem.createImage(getImage().getLocation(),getImage().getWidth(),getImage().getHeight());
         }

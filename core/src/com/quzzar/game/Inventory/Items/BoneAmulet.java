@@ -5,8 +5,8 @@ import com.quzzar.game.Inventory.ItemType;
 import com.quzzar.game.Inventory.Items.Groups.Necklace;
 
 public class BoneAmulet extends Necklace {
-    public BoneAmulet(int amount, int defenseMod, int speedMod) {
-        super(ItemType.BONE_AMULET, amount, "Bone Amulet", defenseMod, speedMod);
+    public BoneAmulet() {
+        super(ItemType.BONE_AMULET, "Bone Amulet", 3, -1);
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.quzzar.game.Combat.EntityType;
 
 public class Demon extends Monster {
     public Demon() {
-        super(EntityType.DEMON_GIRL, "Demon Girl", 30, 3, 6, 8);
+        super(EntityType.DEMON_GIRL, "Demon", 30, 3, 6, 8);
     }
 
     @Override

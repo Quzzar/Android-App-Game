@@ -17,6 +17,9 @@ public class Entity {
     final private int maxHealth;
     private int health;
 
+    final private int fadeOutCountMax = 100;
+    private int fadeOutCount = fadeOutCountMax;
+
     public Entity(EntityType entityType, String displayName, int health){
         this.entityType = entityType;
         this.displayName = displayName;
@@ -24,7 +27,7 @@ public class Entity {
         this.maxHealth = health;
         this.health = health;
 
-        EntityHandler.add(this.getEntityType(), this);
+        EntityMap.add(this.getEntityType(), this);
 
     }
 
@@ -36,8 +39,15 @@ public class Entity {
         return health;
     }
 
-    public void hurt(int damage) {
-        health -= damage;
+    public void heal(int amount) {
+        health += amount;
+        if(health>maxHealth){
+            health = maxHealth;
+        }
+    }
+
+    public void hurt(int amount) {
+        health -= amount;
     }
 
     public EntityType getEntityType() {
@@ -64,6 +74,23 @@ public class Entity {
 
     public void draw(SpriteBatch batch){
         image.draw(batch);
+    }
+
+    public boolean isDead(){
+        return getHealth()<=0;
+    }
+
+    public boolean drawFadeOut(SpriteBatch batch){
+        fadeOutCount--;
+        batch.setColor(1.0f, 1.0f, 1.0f, fadeOutCount*1.0f/fadeOutCountMax);
+
+        if(fadeOutCount>0){
+            image.draw(batch);
+        }
+
+        batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+        return fadeOutCount<=0;
     }
 
     public Image getImage(){

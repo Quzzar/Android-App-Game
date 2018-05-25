@@ -12,7 +12,7 @@ public enum EntityType {
     ARCHON(Arrays.asList("game/entities/enemies/Archon.png"), EntityGroup.MONSTER),
     BADGER(Arrays.asList("game/entities/enemies/badger_1.png","game/entities/enemies/badger_2.png"), EntityGroup.MONSTER),
     BASILISK(Arrays.asList("game/entities/enemies/Basilisk.png"), EntityGroup.MONSTER),
-    BOAR(Arrays.asList("game/entities/enemies/boar_1.png","game/entities/enemies/boar_2.png"), EntityGroup.MONSTER),
+    BOAR(Arrays.asList("game/entities/enemies/boar.png"), EntityGroup.MONSTER),
     CRAB(Arrays.asList("game/entities/enemies/crab.png"), EntityGroup.MONSTER),
     CULTIST(Arrays.asList("game/entities/enemies/cultist_1.png", "game/entities/enemies/cultist_2.png",
             "game/entities/enemies/cultist_3.png"), EntityGroup.MONSTER),

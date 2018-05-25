@@ -38,7 +38,7 @@ public class EquipScreen implements Screen {
 
         this.inventoryDisplay = new InventoryDisplay();
 
-        this.backBtn = new Button(new Texture("menu/settings/toMain.png"),new Texture("menu/settings/toMain.png"),
+        this.backBtn = new Button(new Texture("misc/back_1.png"),new Texture("misc/back_1.png"),
                 new Location(0.1,0.9),0.1,Utility.adjustedHeightScale(0.1,0.1));
 
     }
@@ -58,7 +58,7 @@ public class EquipScreen implements Screen {
                             return false;
                         }
 
-                        inventoryDisplay.handleImagesPressed();
+                        inventoryDisplay.handleItemsPressed();
                         Input.end();
                         return false;
                     }

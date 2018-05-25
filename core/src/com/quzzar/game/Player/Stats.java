@@ -24,6 +24,8 @@ public class Stats implements Serializable{
     private double defense;
 
     private Inventory inventory;
+    private MapLoc mapLoc;
+
 
     public Stats(double maxHealth, double damageBase, double speedBase, double defenseBase){
 
@@ -36,6 +38,7 @@ public class Stats implements Serializable{
         health = maxHealth;
 
         inventory = Player.getInventory();
+        mapLoc = new MapLoc(0,2);
 
     }
 
@@ -44,10 +47,6 @@ public class Stats implements Serializable{
         defense = defenseBase;
         damage = damageBase;
         speed = speedBase;
-
-        if(!inventory.getArmor().isNothing()){
-            defense += ((Armor)inventory.getArmor()).getDefenseMod();
-        }
 
         if(!inventory.getFirstHand().isNothing()){
             damage += ((Weapon)inventory.getFirstHand()).getDamageMod();
@@ -61,6 +60,12 @@ public class Stats implements Serializable{
 
         if(!inventory.getHelmet().isNothing()){
             defense += ((Helmet)inventory.getHelmet()).getDefenseMod();
+            speed += ((Helmet)inventory.getHelmet()).getSpeedMod();
+        }
+
+        if(!inventory.getArmor().isNothing()){
+            defense += ((Armor)inventory.getArmor()).getDefenseMod();
+            speed += ((Armor)inventory.getArmor()).getSpeedMod();
         }
 
         if(!inventory.getNecklace().isNothing()){
@@ -116,6 +121,10 @@ public class Stats implements Serializable{
 
     public double getDefense() {
         return defense;
+    }
+
+    public MapLoc getPlayerLocation(){
+        return mapLoc;
     }
 
 

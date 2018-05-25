@@ -34,7 +34,7 @@ public class SettingsScreen implements Screen {
 
         this.background = new Background(new Texture("misc/stone_2.jpg"));
 
-        backBtn = new Button(new Texture("menu/settings/toMain.png"),new Texture("menu/settings/toMain.png"),
+        backBtn = new Button(new Texture("misc/back_1.png"),new Texture("misc/back_1.png"),
                 new Location(0.1,0.9),0.1,0.1);
 
     }

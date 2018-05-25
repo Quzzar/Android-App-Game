@@ -168,35 +168,39 @@ public class ItemInfoScreen implements Screen {
         double yVal = 0.7;
         double increment = 0.12;
 
+        int p = 0;
+
         if(item.getItemGroup().equals(ItemGroup.RING)){
             Ring itemRing = (Ring) item;
-            textFont.writeText(batch,"Defense: "+itemRing.getDefenseMod(),new Location(xVal,yVal-increment*0));
-            textFont.writeText(batch,"Speed: "+itemRing.getSpeedMod(),new Location(xVal,yVal-increment*1));
+            p += textFont.writeDetails(batch,"Defense",itemRing.getDefenseMod(),new Location(xVal,yVal-increment*p));
+            textFont.writeDetails(batch,"Speed",itemRing.getSpeedMod(),new Location(xVal,yVal-increment*p));
         } else if(item.getItemGroup().equals(ItemGroup.NECKLACE)){
             Necklace itemNecklace = (Necklace) item;
-            textFont.writeText(batch,"Defense: "+itemNecklace.getDefenseMod(),new Location(xVal,yVal-increment*0));
-            textFont.writeText(batch,"Speed: "+itemNecklace.getSpeedMod(),new Location(xVal,yVal-increment*1));
+            p += textFont.writeDetails(batch,"Defense",itemNecklace.getDefenseMod(),new Location(xVal,yVal-increment*p));
+            textFont.writeDetails(batch,"Speed",itemNecklace.getSpeedMod(),new Location(xVal,yVal-increment*p));
         } else if(item.getItemGroup().equals(ItemGroup.HELMET)){
             Helmet itemHelmet = (Helmet) item;
-            textFont.writeText(batch,"Defense: "+itemHelmet.getDefenseMod(),new Location(xVal,yVal-increment*0));
+            p += textFont.writeDetails(batch,"Defense",itemHelmet.getDefenseMod(),new Location(xVal,yVal-increment*p));
+            textFont.writeDetails(batch,"Speed",itemHelmet.getSpeedMod(),new Location(xVal,yVal-increment*p));
         } else if(item.getItemGroup().equals(ItemGroup.ARMOR)){
             Armor itemArmor = (Armor) item;
-            textFont.writeText(batch,"Defense: "+itemArmor.getDefenseMod(),new Location(xVal,yVal-increment*0));
+            p += textFont.writeDetails(batch,"Defense",itemArmor.getDefenseMod(),new Location(xVal,yVal-increment*p));
+            textFont.writeDetails(batch,"Speed",itemArmor.getSpeedMod(),new Location(xVal,yVal-increment*p));
         } else if(item.getItemGroup().equals(ItemGroup.WEAPON)){
             Weapon itemWeapon = (Weapon) item;
-            textFont.writeText(batch,"Damage: "+itemWeapon.getDamageMod(),new Location(xVal,yVal-increment*0));
-            textFont.writeText(batch,"Speed: "+itemWeapon.getSpeedMod(),new Location(xVal,yVal-increment*1));
+            p += textFont.writeDetails(batch,"Damage",itemWeapon.getDamageMod(),new Location(xVal,yVal-increment*p));
+            textFont.writeDetails(batch,"Speed",itemWeapon.getSpeedMod(),new Location(xVal,yVal-increment*p));
         } else if(item.getItemGroup().equals(ItemGroup.CONSUMABLE)){
             Consumable itemConsumable = (Consumable) item;
-            textFont.writeText(batch,"Damage Boost: "+itemConsumable.getDamageBoost(),new Location(xVal,yVal-increment*0));
-            textFont.writeText(batch,"Defense Boost: "+itemConsumable.getDefenseBoost(),new Location(xVal,yVal-increment*1));
-            textFont.writeText(batch,"Speed Boost: "+itemConsumable.getSpeedBoost(),new Location(xVal,yVal-increment*2));
-            textFont.writeText(batch,"Health Increase: "+itemConsumable.getHealthIncrease(),new Location(xVal,yVal-increment*3));
-            textFont.writeText(batch,"Time Duration: "+itemConsumable.getTimeDuration(),new Location(xVal,yVal-increment*4));
+            p += textFont.writeDetails(batch,"Damage Boost",itemConsumable.getDamageBoost(),new Location(xVal,yVal-increment*p));
+            p += textFont.writeDetails(batch,"Defense Boost",itemConsumable.getDefenseBoost(),new Location(xVal,yVal-increment*p));
+            p += textFont.writeDetails(batch,"Speed Boost",itemConsumable.getSpeedBoost(),new Location(xVal,yVal-increment*p));
+            p += textFont.writeDetails(batch,"Health Increase",itemConsumable.getHealthIncrease(),new Location(xVal,yVal-increment*p));
+            textFont.writeDetails(batch,"Time Duration",itemConsumable.getTimeDuration(),new Location(xVal,yVal-increment*p));
         } else if(item.getItemGroup().equals(ItemGroup.QUEST)){
             Quest itemQuest = (Quest) item;
-            textFont.writeText(batch,"Owner Name: "+itemQuest.getOwnerName(),new Location(xVal,yVal-increment*0));
-            textFont.writeText(batch,"Quest Title: "+itemQuest.getQuestTitle(),new Location(xVal,yVal-increment*1));
+            p += textFont.writeDetails(batch,"Owner Name",itemQuest.getOwnerName(),new Location(xVal,yVal-increment*p));
+            textFont.writeDetails(batch,"Quest Title",itemQuest.getQuestTitle(),new Location(xVal,yVal-increment*p));
         }
 
 

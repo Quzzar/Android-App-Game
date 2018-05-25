@@ -73,9 +73,9 @@ public class CombatScreen implements Screen {
         this.character = new Image(new Texture("game/combat/character.png"), new Location(0.2,0.3),0.6);
 
         this.hitBtn = new Button(new Texture("game/combat/hitBtn.png"),new Texture("game/combat/hitBtn.png"),
-                new Location(0.5,0.1),0.1);
+                new Location(0.7,0.1),0.2,0.1);
         this.runBtn = new Button(new Texture("game/combat/runBtn.png"),new Texture("game/combat/runBtn.png"),
-                new Location(0.6,0.1),0.1);
+                new Location(0.85,0.1),0.2,0.1);
 
         enemy.createImage(new Location(0.8,0.45));
 

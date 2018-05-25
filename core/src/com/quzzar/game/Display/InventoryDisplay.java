@@ -62,7 +62,7 @@ public class InventoryDisplay {
 
     }
 
-    public void handleImagesPressed(){
+    public void handleItemsPressed(){
         // If an item image is selected and they're pressing an equipment slot
         if(!selectedItem.isNothing()){
             Inventory inventory = Player.getInventory();

@@ -1,6 +1,7 @@
 package com.quzzar.game;
 
 import com.badlogic.gdx.Game;
+import com.quzzar.game.World.Map;
 import com.quzzar.game.Screens.MenuScreen;
 
 public class GameMain extends Game {
@@ -10,6 +11,7 @@ public class GameMain extends Game {
 	@Override
 	public void create() {
 		instance = this;
+		Map.initialize();
 		this.setScreen(new MenuScreen(this));
 	}
 

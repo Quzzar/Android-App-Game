@@ -33,25 +33,25 @@ public class MenuScreen implements Screen{
 
         this.batch = new SpriteBatch();
 
-        logoImg = new Image(new Texture("menu/gamelogo.png"),
-                new Location(0.5, 0.85),
-                0.25,0.25);
+        logoImg = new Image(new Texture("menu/game_logo.png"),
+                new Location(0.5, 0.88),
+                0.35,0.3);
 
         if(DataUtility.hasSave()){
-            playBtn = new Button(new Texture("menu/continue.png"), new Texture("menu/continue.png"),
-                    new Location(0.5, 0.6),
-                    0.2, 0.2);
+            playBtn = new Button(new Texture("menu/continueBtn.png"), new Texture("menu/continueBtn.png"),
+                    new Location(0.5, 0.66),
+                    0.2, 0.17);
         } else {
-            playBtn = new Button(new Texture("menu/begin.png"), new Texture("menu/begin.png"),
-                    new Location(0.5, 0.6),
-                    0.2, 0.2);
+            playBtn = new Button(new Texture("menu/beginBtn.png"), new Texture("menu/beginBtn.png"),
+                    new Location(0.5, 0.66),
+                    0.2, 0.17);
         }
 
-        settingsBtn = new Button(new Texture("menu/settings.png"), new Texture("menu/settings_pressed.png"),
-                new Location(0.5, 0.4),
+        settingsBtn = new Button(new Texture("menu/settingsBtn.png"), new Texture("menu/settingsBtn.png"),
+                new Location(0.5, 0.5),
                 0.15, 0.15);
 
-        mainBackground = new Background(new Texture("menu/menuBack.png"));
+        mainBackground = new Background(new Texture("menu/menuBackground.png"));
 
     }
 

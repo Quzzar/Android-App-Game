@@ -24,6 +24,22 @@ public class Font {
         font.draw(batch,text,Input.xScaleToX(location.getX()),Input.yScaleToY(location.getY()));
     }
 
+    public int writeDetails(SpriteBatch batch, String title, double value, Location location){
+        if(value!=0){
+            writeText(batch,title+": "+value,location);
+            return 1;
+        }
+        return 0;
+    }
+
+    public int writeDetails(SpriteBatch batch, String title, String value, Location location){
+        if(value!=""){
+            writeText(batch,title+": "+value,location);
+            return 1;
+        }
+        return 0;
+    }
+
     public void setColor(float red, float green, float blue, float alpha){
         font.setColor(red, green, blue, alpha);
     }

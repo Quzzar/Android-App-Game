@@ -3,12 +3,18 @@ package com.quzzar.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.quzzar.game.Display.SideMenu;
 import com.quzzar.game.GameMain;
 import com.quzzar.game.Input;
+import com.quzzar.game.World.Map;
+import com.quzzar.game.World.Region;
 import com.quzzar.game.Objects.*;
+import com.quzzar.game.Player.Player;
 import com.quzzar.game.Utility;
 
 public class MapScreen implements Screen {
@@ -18,10 +24,14 @@ public class MapScreen implements Screen {
     private final Screen returningScreen;
 
     private SpriteBatch batch;
+    private ShapeRenderer renderer;
 
-    private final Image mapImg;
+    private SideMenu sideMenu;
 
-    private final Button arrowBtn;
+    private Button backBtn;
+
+    private Region region;
+
 
     public MapScreen(final GameMain game, final Screen returningScreen) {
 
@@ -29,14 +39,14 @@ public class MapScreen implements Screen {
         this.returningScreen = returningScreen;
 
         this.batch = new SpriteBatch();
+        this.renderer = new ShapeRenderer();
 
-        mapImg = new Image(new Texture("game/map/mapImg.jpg"),
-                new Location(0.5, 0.5),
-                0.2,0.4);
+        this.region = Player.getStats().getPlayerLocation().getRegion();
 
-        arrowBtn = new Button(new Texture("game/map/mapArrow.png"), new Texture("game/map/mapArrow.png"),
-                new Location(0.5, 0.3),
-                0.1, 0.3);
+        this.sideMenu = new SideMenu(region.getRegionTexture());
+
+        backBtn = new Button(new Texture("misc/back_2.png"),new Texture("misc/back_2.png"),
+                new Location(0.9,0.9),0.1,0.1);
 
     }
 
@@ -49,12 +59,17 @@ public class MapScreen implements Screen {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Input.begin();
 
-                //Change map area button
-                //Currently has same function as play button
-                if (arrowBtn.containsLocation(Input.getTouchedLocation())){
+                if (backBtn.containsLocation(Input.getTouchedLocation())){
                     mapScreen.dispose();
+                    game.setScreen(new InventoryScreen(game, returningScreen));
+                    return super.touchUp(screenX, screenY, pointer, button);
                 }
 
+                region.handleAreasPressed();
+                if(Map.checkForRegionChange()){
+                    mapScreen.dispose();
+                    game.setScreen(new MapScreen(game, returningScreen));
+                }
                 Input.end();
                 return super.touchUp(screenX, screenY, pointer, button);
             }
@@ -66,17 +81,31 @@ public class MapScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.15f, 0.15f, 0.3f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         batch.begin();
 
-        if(arrowBtn.containsLocation(Input.getTouchedLocation())){
-            arrowBtn.drawPressed(batch);
-        } else {
-            arrowBtn.drawIdle(batch);
-        }
-
-        mapImg.draw(batch);
+        sideMenu.draw(batch);
 
         batch.end();
+
+        ///
+
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        region.drawPaths(renderer);
+
+        renderer.end();
+
+        ///
+
+        batch.begin();
+
+        region.drawAreas(batch, Color.GREEN);
+
+        backBtn.draw(batch);
+
+        batch.end();
+
     }
 
     @Override
@@ -101,6 +130,7 @@ public class MapScreen implements Screen {
 
     @Override
     public void dispose() {
+        renderer.dispose();
         Utility.screenExit(batch);
     }
 }

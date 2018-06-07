@@ -3,6 +3,7 @@ package com.quzzar.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -149,7 +150,13 @@ public class CombatScreen implements Screen {
             }
 
         } else {
-            enemy.draw(batch);
+            if(((Monster) enemy).isPoisonous()){
+                batch.setColor(Color.FOREST);
+                enemy.draw(batch);
+                batch.setColor(Color.WHITE);
+            } else {
+                enemy.draw(batch);
+            }
         }
 
         nameFont.writeText(batch,enemy.getDisplayName(),new Location(0.65,0.95));

@@ -12,7 +12,7 @@ public class Monster extends Entity {
     private double defense;
     private double speed;
 
-    public Monster(EntityType entityType, String displayName, double health, double damage, double defense, double speed) {
+    public Monster(EntityType entityType, String displayName, double health, double damage, double defense, double speed, boolean poisonous) {
         super(entityType, displayName, health);
 
         this.damage = damage;

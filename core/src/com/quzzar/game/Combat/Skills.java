@@ -13,7 +13,7 @@ public class Skills {
         this.healed = healAmount;
         this.statDecrease = statDecrease;
         this.statIncrease = statIncrease;
-        
+
     }
     public double getDamage() { return damage; }
 
@@ -23,4 +23,3 @@ public class Skills {
 
     public double getStatIncrease() { return statIncrease; }
 }
-

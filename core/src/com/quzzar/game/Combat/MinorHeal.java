@@ -1,11 +1,9 @@
 package com.quzzar.game.Combat;
 
-import com.quzzar.game.Combat.SkillGroups.Skills.Skills;
-
 public class MinorHeal extends Skills {
-public MinorHeal() {
-    super("Minor Heal", 3, 0, 0, 0);
-}
+    public MinorHeal() {
+        super("Minor Heal", 3, 0, 0, 0);
+    }
     //DO ACTUAL HEALING
     //Entity.heal(healAmount);
 }

@@ -11,6 +11,7 @@ public class Monster extends Entity {
     private double damage;
     private double defense;
     private double speed;
+    private boolean poisonous;
 
     public Monster(EntityType entityType, String displayName, double health, double damage, double defense, double speed, boolean poisonous) {
         super(entityType, displayName, health);
@@ -33,10 +34,12 @@ public class Monster extends Entity {
         return speed;
     }
 
+    public boolean isPoisonous() {
+        return poisonous;
+    }
 
     public static Entity RANDOM(){
         return EnemyCreation.createWeakEnemy();
     }
-
 
 }

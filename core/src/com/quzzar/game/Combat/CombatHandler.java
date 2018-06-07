@@ -16,7 +16,7 @@ public class CombatHandler {
 
         boolean playerHit = checkHit(playerSpeedR);
         boolean enemyHit = checkHit(enemySpeedR);
-        boolean poisonous = enemy.poisonous;
+        boolean poisonous = enemy.isPoisonous();
         boolean poisoned = false;
         int poisonCount = 0;
 

@@ -151,7 +151,7 @@ public class CombatScreen implements Screen {
 
         } else {
             if(((Monster) enemy).isPoisonous()){
-                batch.setColor(Color.FOREST);
+                batch.setColor(Color.GREEN);
                 enemy.draw(batch);
                 batch.setColor(Color.WHITE);
             } else {

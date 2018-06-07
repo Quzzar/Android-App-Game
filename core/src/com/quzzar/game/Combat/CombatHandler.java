@@ -24,23 +24,24 @@ public class CombatHandler {
         Utility.print("COMBAT","pSpeed:"+stats.getSpeed());
         Utility.print("COMBAT","eSpeed:"+enemy.getSpeed());
 
-        if (enemyHit && poisonous) {
-            if (poisoned) {
-                poisonCount = 0;
-            } else {
-                poisoned = true;
-                Utility.print("COMBAT", "Player has been poisoned");
-                }
-            }
-        if (poisoned && !playerHit) {
-                Player.hurt(2);
-                Utility.print("COMBAT", "Player took 2 damage from poison" + stats.getHealth());
+        if (poisoned) {
+                double damage = dealPoisonDamage();
+                Utility.print("COMBAT", "Player took "+damage+" damage from poison" + stats.getHealth());
                 poisonCount++;
                 if (poisonCount == 3) {
                     poisoned = false;
                     poisonCount = 0;
                 }
         }
+        if (enemyHit && poisonous) {
+            if (poisoned) {
+                poisonCount = 0;
+            } else {
+                poisoned = true;
+                Utility.print("COMBAT", "Player has been poisoned");
+            }
+        }
+
         if(playerHit){
             enemy.hurt(calculateDamage(stats.getDamage(), enemy.getDefense()));
         }
@@ -52,6 +53,17 @@ public class CombatHandler {
 
         Utility.print("COMBAT","Enemy Final Damage:"+calculateDamage(enemy.getDamage(), stats.getDefense()));
 
+    }
+
+    private static double dealPoisonDamage(){
+
+        Random rand = new Random();
+
+        double damage = rand.nextDouble()*Player.getStats().getMaxHealth()*0.1;
+
+        Player.hurt(damage);
+
+        return damage;
     }
 
     private static double calculateDamage(double attackerDamage, double defenderDefense){

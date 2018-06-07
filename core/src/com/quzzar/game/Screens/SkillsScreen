@@ -1,0 +1,83 @@
+package com.quzzar.game.Screens;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.quzzar.game.Display.Background;
+import com.quzzar.game.GameMain;
+import com.quzzar.game.Input;
+import com.quzzar.game.Objects.Button;
+import com.quzzar.game.Objects.Location;
+import com.quzzar.game.Utility;
+
+public class SkillsScreen implements Screen {
+
+    private final GameMain game;
+    private final SkillsScreen skillsScreen = this;
+    private final Screen returningScreen;
+
+    private SpriteBatch batch;
+
+    private Button backBtn;
+
+    private Background background;
+
+    public SkillsScreen(final GameMain game, final Screen returningScreen) {
+
+        this.game = game;
+        this.returningScreen = returningScreen;
+
+        this.batch = new SpriteBatch();
+        this.background = new Background(new Texture("misc/stone_2.jpg"));
+
+        backBtn = new Button(new Texture("misc/back_1.png"),new Texture("misc/back_1.png"),
+                new Location(0.1,0.9),0.1,0.1);
+
+    }
+    @Override
+    public void show() {
+
+        Gdx.input.setInputProcessor(new InputAdapter() {
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                Input.begin();
+
+                Input.end();
+                return super.touchUp(screenX, screenY, pointer, button);
+            }
+        });
+
+    }
+
+    @Override
+    public void render(float delta) {
+
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+        Utility.screenPause();
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+        Utility.screenExit(batch);
+    }
+}

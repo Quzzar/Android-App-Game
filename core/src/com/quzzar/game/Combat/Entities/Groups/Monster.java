@@ -19,6 +19,19 @@ public class Monster extends Entity {
         this.damage = damage;
         this.defense = defense;
         this.speed = speed;
+        this.poisonous = poisonous;
+
+    }
+
+    public Monster(EntityType entityType, String displayName, double health, double damage, double defense, double speed) {
+        super(entityType, displayName, health);
+
+        this.damage = damage;
+        this.defense = defense;
+        this.speed = speed;
+
+        Random rand = new Random();
+        this.poisonous = (rand.nextInt(3)==1);
 
     }
 

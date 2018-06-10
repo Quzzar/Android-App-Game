@@ -102,26 +102,27 @@ public class Stats implements Serializable{
 
     public void heal(double amount) {
         health += amount;
-        if(health>maxHealth){
+        if(health>maxHealth)
             health = maxHealth;
-        }
     }
 
-    public void hurt(double amount) {
-        health -= amount;
-    }
+    public void hurt(double amount) { health -= amount; }
 
-    public double getDamage() {
-        return damage;
-    }
+    public double getDamage() { return damage; }
+
+    public void setDamage(double amount) { damage = amount; }
 
     public double getSpeed() {
         return speed;
     }
 
+    public void setSpeed(double amount) { speed = amount; }
+
     public double getDefense() {
         return defense;
     }
+
+    public void setDefense(double amount) { defense = amount; }
 
     public MapLoc getPlayerLocation(){
         return mapLoc;

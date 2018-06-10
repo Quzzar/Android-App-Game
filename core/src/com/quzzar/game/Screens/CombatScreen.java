@@ -38,6 +38,9 @@ public class CombatScreen implements Screen {
     private Button hitBtn;
     private Button runBtn;
     private Button invBtn;
+    private Button skillOne;
+    private Button skillTwo;
+    private Button skillThree;
 
     private Font nameFont;
 

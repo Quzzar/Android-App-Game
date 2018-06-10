@@ -47,9 +47,17 @@ public class Monster extends Entity {
         return speed;
     }
 
+    public void setDamage(double amount) { damage = amount; }
+
+    public void setSpeed(double amount) { speed = amount; }
+
+    public void setDefense(double amount) { defense = amount; }
+
     public boolean isPoisonous() {
         return poisonous;
     }
+
+    public void setPoisonous(boolean bool) { poisonous = bool; }
 
     public static Entity RANDOM(){
         return EnemyCreation.createWeakEnemy();

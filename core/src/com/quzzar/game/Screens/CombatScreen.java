@@ -40,7 +40,6 @@ public class CombatScreen implements Screen {
     private Button invBtn;
     private Button skillOne;
     private Button skillTwo;
-    private Button skillThree;
 
     private Font nameFont;
 
@@ -80,7 +79,10 @@ public class CombatScreen implements Screen {
                 new Location(0.7,0.1),0.2,0.1);
         this.runBtn = new Button(new Texture("game/combat/runBtn.png"),new Texture("game/combat/runBtn.png"),
                 new Location(0.85,0.1),0.2,0.1);
-
+        this.skillTwo = new Button(new Texture("game/combat/hitBtn.png"),new Texture("game/combat/aaronpls.PNG"),
+                new Location(0.85,0.2),0.1,0.1);
+        this.skillOne = new Button(new Texture("game/combat/hitBtn.png"),new Texture("game/combat/aaronpls.PNG"),
+                new Location(0.7,0.2),0.1,0.1);
         enemy.createImage(new Location(0.8,0.45));
 
     }
@@ -109,6 +111,14 @@ public class CombatScreen implements Screen {
 
                     if (invBtn.containsLocation(Input.getTouchedLocation())){
                         game.setScreen(new InventoryScreen(game, combatScreen));
+                    }
+
+                    if (skillOne.containsLocation(Input.getTouchedLocation())){
+                        enemy.hurt(enemy.getMaxHealth() / 2);
+                    }
+
+                    if (skillTwo.containsLocation(Input.getTouchedLocation())){
+                        Player.heal(25);
                     }
 
                 }
